@@ -42,9 +42,15 @@ class ServiceCard(Directive):
 def service_card_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
-    data = '<div class="hello">'
-    data += 'Hello World'
-    data += '</div>'
+    data = '''
+        <div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        </div>'''
     self.body.append(data)
     raise nodes.SkipNode
 
