@@ -57,8 +57,8 @@ class DirectiveWrapper(SphinxDirective):
         text = '\n'.join(self.content)
         node = directive_wrapper(text)
         node['class'] = self.options["class"]
-        if self.options["id"]:
-            node['id'] = self.options["id"]
+        # if self.options["id"]:
+        #     node['id'] = self.options["id"]
         if self.options["wrapper_type"]:
             node['wrapper_type'] = self.options["wrapper_type"]
         else:
