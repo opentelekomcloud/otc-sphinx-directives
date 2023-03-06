@@ -34,7 +34,7 @@ class service_card_wrapper(nodes.General, nodes.Element):
     
     @staticmethod
     def visit_div(self, node):
-        self.body.append(self.starttag(node, 'div class="test"'))
+        self.body.append(self.starttag(node, 'div'))
     
     @staticmethod
     def depart_div(self, node=None):
