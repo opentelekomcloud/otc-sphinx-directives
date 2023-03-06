@@ -41,7 +41,9 @@ class ServiceCardWrapper(Directive):
         rst = ViewList()
         # for count, value in enumerate(self.content):
         #     rst.append(value,"fakefile.rst", str(count))
-        rst.append(".. container::", "fakefile.rst", 10)
+        rst.append("""
+        .. container::
+             test""", "fakefile.rst", 10)
         rst.append("     test", "fakefile.rst", 11)
         print(rst)
         self.state.nested_parse(rst, 0, node)
