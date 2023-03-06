@@ -34,7 +34,7 @@ class service_card_wrapper(nodes.General, nodes.Element):
     
     @staticmethod
     def visit_div(self, node):
-        self.body.append(self.starttag(node, 'div'))
+        self.body.append(self.starttag(node, f'div class="{node["class"]}'))
     
     @staticmethod
     def depart_div(self, node=None):
@@ -44,7 +44,7 @@ class service_card_wrapper(nodes.General, nodes.Element):
 class ServiceCardWrapper(SphinxDirective):
     node_class = service_card_wrapper
     option_spec = {
-        # 'service_type': directives.unchanged_required,
+        'class': directives.unchanged
     }
 
     has_content = True
@@ -53,17 +53,8 @@ class ServiceCardWrapper(SphinxDirective):
 
         self.assert_has_content()
         text = '\n'.join(self.content)
-        try:
-            if self.arguments:
-                classes = directives.class_option(self.arguments[0])
-            else:
-                classes = []
-        except ValueError:
-            raise self.error(
-                'Invalid class attribute value for "%s" directive: "%s".'
-                % (self.name, self.arguments[0]))
         node = service_card_wrapper(text)
-        node['classes'].extend(classes)
+        node['class'] = self.options["class"]
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
