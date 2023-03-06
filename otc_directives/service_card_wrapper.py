@@ -45,7 +45,7 @@ class ServiceCardWrapper(Directive):
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
-
+    print("test")
     rst = ViewList()
     rst.append(f"""
         <div class='muh'>
@@ -58,7 +58,7 @@ def service_card_wrapper_html(self, node):
     # data = f"""
     #     <div class='muh'>
     #     """
-    # print(node.content[0])
+    # print(node.content)
     # data += node.content
     # data += f"""
     #     </div>
