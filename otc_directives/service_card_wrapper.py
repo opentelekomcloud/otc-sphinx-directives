@@ -50,7 +50,7 @@ class ServiceCardWrapper(Directive):
         nested_parse_with_titles(self.state, rst, node)
         # node['service_type'] = self.options.get('service_type')
         # return [node]
-        return node.children
+        return [node.children]
 
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
