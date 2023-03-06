@@ -34,10 +34,13 @@ class directive_wrapper(nodes.General, nodes.Element):
     
     @staticmethod
     def visit_div(self, node):
+        options = ""
         if node['id'] != '':
-            self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}" id="{node["id"]}"'))
-        else:
-            self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}"'))
+            options += f'id="{node["id"]} '
+        if node['class'] != '':
+            options += f'class="{node["class"]} '
+        
+        self.body.append(self.starttag(node, f'{node["wrapper_type"]} {options}'))
     
     @staticmethod
     def depart_div(self, node=None):
