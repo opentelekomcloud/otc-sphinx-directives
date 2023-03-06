@@ -21,6 +21,7 @@ from sphinx.util import logging
 from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, switch_source_input
 from docutils.parsers.rst.states import RSTState
+from docutils.statemachine import StringList
 
 
 LOG = logging.getLogger(__name__)
