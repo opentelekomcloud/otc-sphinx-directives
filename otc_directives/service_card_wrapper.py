@@ -16,6 +16,7 @@ from docutils import nodes
 
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
+from docutils.statemachine import ViewList
 from sphinx.util import logging
 
 
@@ -43,6 +44,15 @@ class ServiceCardWrapper(Directive):
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
+
+    rst = ViewList()
+    rst.append(f"""
+        <div class='muh'>
+        """)
+    rst.append(node.content[0])
+    rst.append(f"""
+        </div>
+        """)
     # data = f"""
     #     <div class='muh'>
     #     """
@@ -51,15 +61,7 @@ def service_card_wrapper_html(self, node):
     # data += f"""
     #     </div>
     #     """
-    data = []
-    data.append(f"""
-         <div class='muh'>
-         """)
-    data.append(node.content)
-    data.append(f"""
-         </div>
-         """)
-    self.body.append(data)
+    self.body.append(rst)
     raise nodes.SkipNode
 
 def setup(app):
