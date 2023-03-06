@@ -79,7 +79,7 @@ def service_card_wrapper_html(self, node):
         """
     
     print(node.children)
-    data += node
+    data += node.children
     data += f"""
         </div>
         """
