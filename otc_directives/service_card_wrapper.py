@@ -40,7 +40,7 @@ def parse_generated_content(state: RSTState, content: StringList
         node.document = state.document
         nested_parse_with_titles(state, content, node)
 
-        return node.children
+        return [node]
 
 
 class ServiceCardWrapper(SphinxDirective):
