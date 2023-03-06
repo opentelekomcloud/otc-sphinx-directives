@@ -51,10 +51,10 @@ def service_card_wrapper_html(self, node):
         <div class='muh'>
         ""","fakefile.rst", 10)
     print(rst)
-    rst.append(node.content)
+    rst.append(node.content,"fakefile.rst", 11)
     rst.append(f"""
         </div>
-        """)
+        ""","fakefile.rst", 12)
     # data = f"""
     #     <div class='muh'>
     #     """
@@ -65,7 +65,7 @@ def service_card_wrapper_html(self, node):
     #     """
     nested_parse_with_titles(self.state, rst, node)
     print(rst)
-    self.body.append(rst.children)
+    self.body.append(rst)
     raise nodes.SkipNode
 
 def setup(app):
