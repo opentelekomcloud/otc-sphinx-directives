@@ -34,17 +34,19 @@ class directive_wrapper(nodes.General, nodes.Element):
     
     @staticmethod
     def visit_div(self, node):
-        self.body.append(self.starttag(node, f'div class="{node["class"]}"'))
+        self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}"'))
     
     @staticmethod
     def depart_div(self, node=None):
-        self.body.append('</div>\n')
+        self.body.append(f'</{node["wrapper_type"]}>\n')
 
 
 class DirectiveWrapper(SphinxDirective):
     node_class = directive_wrapper
     option_spec = {
-        'class': directives.unchanged
+        'class': directives.unchanged,
+        'id': directives.unchanged,
+        'wrapper_type': directives.unchanged
     }
 
     has_content = True
@@ -55,7 +57,13 @@ class DirectiveWrapper(SphinxDirective):
         text = '\n'.join(self.content)
         node = directive_wrapper(text)
         node['class'] = self.options["class"]
-        self.add_name(node)
+        if self.options["id"]:
+            node['id'] = self.options["id"]
+        if self.options["wrapper_type"]:
+            node['wrapper_type'] = self.options["wrapper_type"]
+        else:
+            node['wrapper_type'] = "div"
+        # self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
