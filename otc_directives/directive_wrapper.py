@@ -59,7 +59,10 @@ class DirectiveWrapper(SphinxDirective):
         self.assert_has_content()
         text = '\n'.join(self.content)
         node = directive_wrapper(text)
-        node['class'] = self.options["class"]
+        if "class" in self.options.keys() and self.options["class"]:
+            node['class'] = self.options["class"]
+        else:
+            node['class'] = ''
         if "id" in self.options.keys() and self.options["id"]:
             node['id'] = self.options["id"]
         else:
