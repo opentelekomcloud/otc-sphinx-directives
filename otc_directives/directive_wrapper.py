@@ -64,7 +64,7 @@ class DirectiveWrapper(SphinxDirective):
             node['id'] = self.options["id"]
         else:
             node['id'] = ""
-        if self.options["wrapper_type"]:
+        if "wrapper_type" in self.options.keys() and self.options["wrapper_type"]:
             node['wrapper_type'] = self.options["wrapper_type"]
         else:
             node['wrapper_type'] = "div"
