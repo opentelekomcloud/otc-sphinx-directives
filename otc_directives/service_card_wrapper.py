@@ -31,7 +31,18 @@ LOG = logging.getLogger(__name__)
 class service_card_wrapper(nodes.General, nodes.Element):
     pass
 
+class DivNode(nodes.General, nodes.Element): 
 
+    def __init__(self, text):
+        super(DivNode, self).__init__()
+    
+    @staticmethod
+    def visit_div(self, node):
+        self.body.append(self.starttag(node, 'div'))
+    
+    @staticmethod
+    def depart_div(self, node=None):
+        self.body.append('</div>\n')
 
 
 class ServiceCardWrapper(SphinxDirective):
@@ -43,23 +54,41 @@ class ServiceCardWrapper(SphinxDirective):
     has_content = True
 
     def run(self):
-        node = self.node_class()
-        # node = nodes.section()
-        
-        rst = ViewList()
-        # for count, value in enumerate(self.content):
-        #     rst.append(value,"fakefile.rst", str(count))
-        rst.append("""
-        .. code-block:: python 
-           print 'Explicit is better than implicit.'""", "fakefile.rst", 10)
-        rst.append("     test", "fakefile.rst", 11)
-        node.content = rst
-        print(rst)
-        # self.state.nested_parse(rst, 0, node)
-        self.state.nested_parse(node.content, 0, node)
-        # node['service_type'] = self.options.get('service_type')
-        # return [node]
+
+        self.assert_has_content()
+        text = '\n'.join(self.content)
+        try:
+            if self.arguments:
+                classes = directives.class_option(self.arguments[0])
+            else:
+                classes = []
+        except ValueError:
+            raise self.error(
+                'Invalid class attribute value for "%s" directive: "%s".'
+                % (self.name, self.arguments[0]))
+        node = DivNode(text)
+        node['classes'].extend(classes)
+        self.add_name(node)
+        self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
+
+        # node = self.node_class()
+        # # node = nodes.section()
+        
+        # rst = ViewList()
+        # # for count, value in enumerate(self.content):
+        # #     rst.append(value,"fakefile.rst", str(count))
+        # rst.append("""
+        # .. code-block:: python 
+        #    print 'Explicit is better than implicit.'""", "fakefile.rst", 10)
+        # rst.append("     test", "fakefile.rst", 11)
+        # node.content = rst
+        # print(rst)
+        # # self.state.nested_parse(rst, 0, node)
+        # self.state.nested_parse(node.content, 0, node)
+        # # node['service_type'] = self.options.get('service_type')
+        # # return [node]
+        # return [node]
 
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
@@ -78,8 +107,8 @@ def service_card_wrapper_html(self, node):
         <div class='muh'>
         """
     
-    print(node.children[0])
-    data += str(node.children[0])
+    # print(node.children[0])
+    # data += str(node.children[0])
     data += f"""
         </div>
         """
