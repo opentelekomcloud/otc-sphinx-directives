@@ -38,6 +38,9 @@ class ServiceCardWrapper(Directive):
 
     def run(self):
         node = self.node_class()
+        rst = ViewList()
+        for i in self.content:
+            print(i)
         node.content = self.content
         # node['service_type'] = self.options.get('service_type')
         return [node]
@@ -45,27 +48,26 @@ class ServiceCardWrapper(Directive):
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
-    print("test")
-    rst = ViewList()
-    rst.append(f"""
-        <div class='muh'>
-        ""","fakefile.rst", 10)
-    print(rst)
-    rst.append(node.content,"fakefile.rst", 11)
-    rst.append(f"""
-        </div>
-        ""","fakefile.rst", 12)
-    # data = f"""
+    # print("test")
+    # rst = ViewList()
+    # rst.append(f"""
     #     <div class='muh'>
-    #     """
-    # print(node.content)
-    # data += node.content
-    # data += f"""
+    #     ""","fakefile.rst", 10)
+    # print(rst)
+    # rst.append(node.content,"fakefile.rst", 11)
+    # rst.append(f"""
     #     </div>
-    #     """
+    #     ""","fakefile.rst", 12)
+    data = f"""
+        <div class='muh'>
+        """
+    print(node.content)
+    data += node.content
+    data += f"""
+        </div>
+        """
     # nested_parse_with_titles(self.state, rst, node)
-    print(rst)
-    self.body.append(rst)
+    self.body.append(data)
     raise nodes.SkipNode
 
 def setup(app):
