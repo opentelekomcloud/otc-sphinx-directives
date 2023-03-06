@@ -38,9 +38,10 @@ class ServiceCardWrapper(Directive):
 
     def run(self):
         node = self.node_class()
-        node.content = ViewList()
+        rst = ViewList()
         for count, value in enumerate(self.content):
-            node.content.append(value,"fakefile.rst", str(count))
+            rst.append(value,"fakefile.rst", str(count))
+        nested_parse_with_titles(self.state, rst, node)
         # node['service_type'] = self.options.get('service_type')
         return [node]
 
