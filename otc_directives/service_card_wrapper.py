@@ -18,6 +18,7 @@ from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 from docutils.statemachine import ViewList
 from sphinx.util import logging
+from sphinx.util.nodes import nested_parse_with_titles
 
 
 LOG = logging.getLogger(__name__)
@@ -61,6 +62,7 @@ def service_card_wrapper_html(self, node):
     # data += f"""
     #     </div>
     #     """
+    nested_parse_with_titles(self.state, rst, node)
     self.body.append(rst)
     raise nodes.SkipNode
 
