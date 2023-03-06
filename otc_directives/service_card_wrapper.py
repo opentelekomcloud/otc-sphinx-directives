@@ -56,7 +56,7 @@ class ServiceCardWrapper(SphinxDirective):
         node.content = rst
         print(rst)
         # self.state.nested_parse(rst, 0, node)
-        
+        self.state.nested_parse(node.content, 0, node)
         # node['service_type'] = self.options.get('service_type')
         # return [node]
         return [node]
@@ -77,7 +77,7 @@ def service_card_wrapper_html(self, node):
     data = f"""
         <div class='muh'>
         """
-    self.state.nested_parse(node.content, 0, node)
+    
     print(node.content)
     data += node
     data += f"""
