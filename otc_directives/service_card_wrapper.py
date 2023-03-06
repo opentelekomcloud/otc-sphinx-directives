@@ -27,10 +27,10 @@ from docutils.nodes import Element, Node
 
 LOG = logging.getLogger(__name__)
 
-class service_card_wrapper(nodes.General, nodes.Element): 
+class directive_wrapper(nodes.General, nodes.Element): 
 
     def __init__(self, text):
-        super(service_card_wrapper, self).__init__()
+        super(directive_wrapper, self).__init__()
     
     @staticmethod
     def visit_div(self, node):
@@ -41,8 +41,8 @@ class service_card_wrapper(nodes.General, nodes.Element):
         self.body.append('</div>\n')
 
 
-class ServiceCardWrapper(SphinxDirective):
-    node_class = service_card_wrapper
+class DirectiveWrapper(SphinxDirective):
+    node_class = directive_wrapper
     option_spec = {
         'class': directives.unchanged
     }
@@ -53,15 +53,15 @@ class ServiceCardWrapper(SphinxDirective):
 
         self.assert_has_content()
         text = '\n'.join(self.content)
-        node = service_card_wrapper(text)
+        node = directive_wrapper(text)
         node['class'] = self.options["class"]
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
 def setup(app):
-    app.add_node(service_card_wrapper, html=(service_card_wrapper.visit_div, service_card_wrapper.depart_div))
-    app.add_directive("service_card_wrapper", ServiceCardWrapper)
+    app.add_node(directive_wrapper, html=(directive_wrapper.visit_div, directive_wrapper.depart_div))
+    app.add_directive("directive_wrapper", DirectiveWrapper)
 
     return {
         'version': '0.1',
