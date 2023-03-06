@@ -46,7 +46,8 @@ class ServiceCardWrapper(Directive):
              test""", "fakefile.rst", 10)
         rst.append("     test", "fakefile.rst", 11)
         print(rst)
-        self.state.nested_parse(rst, 0, node)
+        # self.state.nested_parse(rst, 0, node)
+        nested_parse_with_titles(self.state, rst, node)
         # node['service_type'] = self.options.get('service_type')
         return [node]
 
