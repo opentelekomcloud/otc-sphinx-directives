@@ -68,24 +68,6 @@ class ServiceCardWrapper(SphinxDirective):
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
-        # node = self.node_class()
-        # # node = nodes.section()
-        
-        # rst = ViewList()
-        # # for count, value in enumerate(self.content):
-        # #     rst.append(value,"fakefile.rst", str(count))
-        # rst.append("""
-        # .. code-block:: python 
-        #    print 'Explicit is better than implicit.'""", "fakefile.rst", 10)
-        # rst.append("     test", "fakefile.rst", 11)
-        # node.content = rst
-        # print(rst)
-        # # self.state.nested_parse(rst, 0, node)
-        # self.state.nested_parse(node.content, 0, node)
-        # # node['service_type'] = self.options.get('service_type')
-        # # return [node]
-        # return [node]
-
 def setup(app):
     app.add_node(service_card_wrapper, html=(service_card_wrapper.visit_div, service_card_wrapper.depart_div))
     app.add_directive("service_card_wrapper", ServiceCardWrapper)
