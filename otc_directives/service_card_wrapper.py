@@ -42,8 +42,8 @@ class ServiceCardWrapper(Directive):
         # for count, value in enumerate(self.content):
         #     rst.append(value,"fakefile.rst", str(count))
         rst.append("""
-        .. container::
-             test""", "fakefile.rst", 10)
+.. container::
+    test""", "fakefile.rst", 10)
         rst.append("     test", "fakefile.rst", 11)
         print(rst)
         # self.state.nested_parse(rst, 0, node)
@@ -70,7 +70,7 @@ def service_card_wrapper_html(self, node):
         """
 
     print(node)
-    data += node.content
+    data += node
     data += f"""
         </div>
         """
