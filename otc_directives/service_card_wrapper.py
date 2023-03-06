@@ -20,6 +20,7 @@ from docutils.statemachine import ViewList
 from sphinx.util import logging
 from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective, switch_source_input
+from docutils.parsers.rst.states import RSTState
 
 
 LOG = logging.getLogger(__name__)
@@ -84,8 +85,8 @@ def service_card_wrapper_html(self, node):
         <div class='muh'>
         """
 
-    print(node.children)
-    data += node.children
+    print(node)
+    data += node
     data += f"""
         </div>
         """
