@@ -27,18 +27,14 @@ from docutils.nodes import Element, Node
 
 LOG = logging.getLogger(__name__)
 
-
-class service_card_wrapper(nodes.General, nodes.Element):
-    pass
-
-class DivNode(nodes.General, nodes.Element): 
+class service_card_wrapper(nodes.General, nodes.Element): 
 
     def __init__(self, text):
-        super(DivNode, self).__init__()
+        super(service_card_wrapper, self).__init__()
     
     @staticmethod
     def visit_div(self, node):
-        self.body.append(self.starttag(node, 'div'))
+        self.body.append(self.starttag(node, 'div class="test"'))
     
     @staticmethod
     def depart_div(self, node=None):
@@ -66,7 +62,7 @@ class ServiceCardWrapper(SphinxDirective):
             raise self.error(
                 'Invalid class attribute value for "%s" directive: "%s".'
                 % (self.name, self.arguments[0]))
-        node = DivNode(text)
+        node = service_card_wrapper(text)
         node['classes'].extend(classes)
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
@@ -90,36 +86,8 @@ class ServiceCardWrapper(SphinxDirective):
         # # return [node]
         # return [node]
 
-def service_card_wrapper_html(self, node):
-    # This method renders containers per each service of the category with all
-    # links as individual list items
-    # print("test")
-    # rst = ViewList()
-    # rst.append(f"""
-    #     <div class='muh'>
-    #     ""","fakefile.rst", 10)
-    # print(rst)
-    # rst.append(node.content,"fakefile.rst", 11)
-    # rst.append(f"""
-    #     </div>
-    #     ""","fakefile.rst", 12
-    data = f"""
-        <div class='muh'>
-        """
-    
-    # print(node.children[0])
-    # data += str(node.children[0])
-    data += f"""
-        </div>
-        """
-    # nested_parse_with_titles(self.state, rst, node)
-    self.body.append(data)
-    raise nodes.SkipNode
-
 def setup(app):
-    app.add_node(service_card_wrapper,
-                 html=(service_card_wrapper_html, None))
-    app.add_node(DivNode, html=(DivNode.visit_div, DivNode.depart_div))
+    app.add_node(service_card_wrapper, html=(service_card_wrapper.visit_div, service_card_wrapper.depart_div))
     app.add_directive("service_card_wrapper", ServiceCardWrapper)
 
     return {
