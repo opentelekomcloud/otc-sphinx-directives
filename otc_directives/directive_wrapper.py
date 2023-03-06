@@ -36,9 +36,9 @@ class directive_wrapper(nodes.General, nodes.Element):
     def visit_div(self, node):
         options = ""
         if node['id'] != '':
-            options += f'id="{node["id"]} '
+            options += f'id="{node["id"]}" '
         if node['class'] != '':
-            options += f'class="{node["class"]} '
+            options += f'class="{node["class"]}" '
         
         self.body.append(self.starttag(node, f'{node["wrapper_type"]} {options}'))
     
