@@ -119,6 +119,7 @@ def service_card_wrapper_html(self, node):
 def setup(app):
     app.add_node(service_card_wrapper,
                  html=(service_card_wrapper_html, None))
+    app.add_node(DivNode, html=(DivNode.visit_div, DivNode.depart_div))
     app.add_directive("service_card_wrapper", ServiceCardWrapper)
 
     return {
