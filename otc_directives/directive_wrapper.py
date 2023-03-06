@@ -10,18 +10,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import yaml
-
 from docutils import nodes
 
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
-from docutils.statemachine import ViewList
 from sphinx.util import logging
-from sphinx.util.nodes import nested_parse_with_titles
-from sphinx.util.docutils import SphinxDirective, switch_source_input
-from docutils.parsers.rst.states import RSTState
-from docutils.statemachine import StringList
+from sphinx.util.docutils import SphinxDirective
 from docutils.nodes import Element, Node
 
 
@@ -74,7 +68,6 @@ class DirectiveWrapper(SphinxDirective):
             node['wrapper_type'] = self.options["wrapper_type"]
         else:
             node['wrapper_type'] = "div"
-        # self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
