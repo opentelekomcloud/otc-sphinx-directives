@@ -53,12 +53,13 @@ class ServiceCardWrapper(SphinxDirective):
         .. code-block:: python 
            print 'Explicit is better than implicit.'""", "fakefile.rst", 10)
         rst.append("     test", "fakefile.rst", 11)
+        node.content = rst
         print(rst)
-        self.state.nested_parse(rst, 0, node)
+        # self.state.nested_parse(rst, 0, node)
         
         # node['service_type'] = self.options.get('service_type')
         # return [node]
-        return node.children
+        return [node]
 
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
