@@ -34,7 +34,10 @@ class directive_wrapper(nodes.General, nodes.Element):
     
     @staticmethod
     def visit_div(self, node):
-        self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}"'))
+        if node['id'] != '':
+            self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}" id="{node["id"]}"'))
+        else:
+            self.body.append(self.starttag(node, f'{node["wrapper_type"]} class="{node["class"]}"'))
     
     @staticmethod
     def depart_div(self, node=None):
@@ -57,8 +60,10 @@ class DirectiveWrapper(SphinxDirective):
         text = '\n'.join(self.content)
         node = directive_wrapper(text)
         node['class'] = self.options["class"]
-        # if self.options["id"]:
-        #     node['id'] = self.options["id"]
+        if self.options["id"]:
+            node['id'] = self.options["id"]
+        else:
+            node['id'] = ""
         if self.options["wrapper_type"]:
             node['wrapper_type'] = self.options["wrapper_type"]
         else:
