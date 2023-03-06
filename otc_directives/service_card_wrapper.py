@@ -78,8 +78,8 @@ def service_card_wrapper_html(self, node):
         <div class='muh'>
         """
 
-    print(node)
-    data += str(node)
+    print(node.content)
+    data += node
     data += f"""
         </div>
         """
