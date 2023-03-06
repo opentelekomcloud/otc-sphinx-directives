@@ -64,7 +64,6 @@ class ServiceCardWrapper(SphinxDirective):
         rst.append("     test", "fakefile.rst", 11)
         print(rst)
         # self.state.nested_parse(rst, 0, node)
-        node.document = self.document
         result = parse_generated_content(self.state, rst)
         # node['service_type'] = self.options.get('service_type')
         # return [node]
