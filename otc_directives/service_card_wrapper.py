@@ -49,7 +49,8 @@ class ServiceCardWrapper(Directive):
         # self.state.nested_parse(rst, 0, node)
         nested_parse_with_titles(self.state, rst, node)
         # node['service_type'] = self.options.get('service_type')
-        return [node]
+        # return [node]
+        return node.children
 
 def service_card_wrapper_html(self, node):
     # This method renders containers per each service of the category with all
@@ -67,12 +68,12 @@ def service_card_wrapper_html(self, node):
     data = f"""
         <div class='muh'>
         """
-    data += node
+    data += node.content
     data += f"""
         </div>
         """
     # nested_parse_with_titles(self.state, rst, node)
-    self.body.append(node.content)
+    self.body.append(data)
     raise nodes.SkipNode
 
 def setup(app):
