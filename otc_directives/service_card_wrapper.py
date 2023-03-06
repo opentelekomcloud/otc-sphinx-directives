@@ -37,7 +37,9 @@ class ServiceCardWrapper(Directive):
     has_content = True
 
     def run(self):
-        node = self.node_class()
+        # node = self.node_class()
+        node = nodes.section()
+        
         rst = ViewList()
         # for count, value in enumerate(self.content):
         #     rst.append(value,"fakefile.rst", str(count))
@@ -47,8 +49,8 @@ class ServiceCardWrapper(Directive):
         rst.append("     test", "fakefile.rst", 11)
         print(rst)
         # self.state.nested_parse(rst, 0, node)
+        node.document = self.state.document
         nested_parse_with_titles(self.state, rst, node)
-        node.content = rst
         # node['service_type'] = self.options.get('service_type')
         # return [node]
         return [node]
@@ -70,8 +72,8 @@ def service_card_wrapper_html(self, node):
         <div class='muh'>
         """
 
-    print(node.content)
-    data += node.content
+    print(node.document)
+    data += node.document
     data += f"""
         </div>
         """
