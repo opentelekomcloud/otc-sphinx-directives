@@ -77,7 +77,7 @@ def service_card_wrapper_html(self, node):
     data = f"""
         <div class='muh'>
         """
-
+    self.state.nested_parse(node.content, 0, node)
     print(node.content)
     data += node
     data += f"""
