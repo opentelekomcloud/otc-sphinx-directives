@@ -37,8 +37,8 @@ class ServiceCardWrapper(Directive):
     has_content = True
 
     def run(self):
-        # node = self.node_class()
-        node = nodes.section()
+        node = self.node_class()
+        # node = nodes.section()
         
         rst = ViewList()
         # for count, value in enumerate(self.content):
