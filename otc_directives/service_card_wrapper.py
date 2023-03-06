@@ -36,7 +36,7 @@ class ServiceCardWrapper(Directive):
 
     def run(self):
         node = self.node_class()
-        # node.content = self.content
+        node.content = self.content
         # node['service_type'] = self.options.get('service_type')
         return [node]
 
@@ -46,6 +46,7 @@ def service_card_wrapper_html(self, node):
     data = f"""
         <div class='muh'>
         """
+    print(node.content)
     # data += node.content
     data += f"""
         </div>
