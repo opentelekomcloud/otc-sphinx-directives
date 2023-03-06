@@ -1,8 +1,13 @@
 ---
 - project:
     merge-mode: squash-merge
-    default-branch: main
-    templates:
+    default-branch: master
     check:
       jobs:
-        - noop
+        - otc-tox-pep8
+        - otc-tox-py38
+        - otc-tox-py39
+    gate:
+      jobs:
+        - otc-tox-py38
+        - otc-tox-pep8
