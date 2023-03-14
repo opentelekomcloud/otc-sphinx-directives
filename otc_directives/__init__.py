@@ -1,2 +1,2 @@
-from otc_directives import service_card.setup
-from otc_directives import directive_wrapper.setup
+from otc_directives.service_card import setup as service_card
+from otc_directives.directive_wrapper import setup as directive_wrapper
