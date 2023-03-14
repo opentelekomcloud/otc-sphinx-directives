@@ -70,13 +70,3 @@ class DirectiveWrapper(SphinxDirective):
             node['wrapper_type'] = "div"
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
-
-def setup(app):
-    app.add_node(directive_wrapper, html=(directive_wrapper.visit_div, directive_wrapper.depart_div))
-    app.add_directive("directive_wrapper", DirectiveWrapper)
-
-    return {
-        'version': '0.1',
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
-    }

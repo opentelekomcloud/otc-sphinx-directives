@@ -1,1 +1,0 @@
-from otc_directives.service_card.service_card import setup

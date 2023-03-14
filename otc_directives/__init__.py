@@ -1,2 +1,1 @@
-import otc_directives.service_card
-import otc_directives.directive_wrapper
+from otc_directives.otc_directives_setup import setup

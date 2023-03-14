@@ -51,14 +51,3 @@ def service_card_html(self, node):
         </div>'''
     self.body.append(data)
     raise nodes.SkipNode
-
-def setup(app):
-    app.add_node(service_card,
-                 html=(service_card_html, None))
-    app.add_directive("service_card", ServiceCard)
-
-    return {
-        'version': '0.1',
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
-    }

@@ -1,1 +1,0 @@
-from otc_directives.directive_wrapper.directive_wrapper import setup
