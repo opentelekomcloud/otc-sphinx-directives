@@ -14,6 +14,8 @@
 import setuptools
 
 setuptools.setup(
-    setup_requires=['pbr>=2.0.0'],
+    setup_requires=[
+        'pbr>=2.0.0',
+        'git+https://gitea.eco.tsi-dev.otc-service.com/infra/otc-metadata.git'],
     pbr=True,
     py_modules=[])

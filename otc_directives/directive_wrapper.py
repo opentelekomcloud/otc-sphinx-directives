@@ -12,20 +12,19 @@
 
 from docutils import nodes
 
-from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
-from docutils.nodes import Element, Node
 
 
 LOG = logging.getLogger(__name__)
 
-class directive_wrapper(nodes.General, nodes.Element): 
+
+class directive_wrapper(nodes.General, nodes.Element):
 
     def __init__(self, text):
         super(directive_wrapper, self).__init__()
-    
+
     @staticmethod
     def visit_div(self, node):
         options = ""
@@ -33,9 +32,10 @@ class directive_wrapper(nodes.General, nodes.Element):
             options += f'id="{node["id"]}" '
         if node['class'] != '':
             options += f'class="{node["class"]}" '
-        
-        self.body.append(self.starttag(node, f'{node["wrapper_type"]} {options}'))
-    
+
+        self.body.append(
+            self.starttag(node, f'{node["wrapper_type"]} {options}'))
+
     @staticmethod
     def depart_div(self, node=None):
         self.body.append(f'</{node["wrapper_type"]}>\n')
@@ -64,7 +64,8 @@ class DirectiveWrapper(SphinxDirective):
             node['id'] = self.options["id"]
         else:
             node['id'] = ""
-        if "wrapper_type" in self.options.keys() and self.options["wrapper_type"]:
+        if ("wrapper_type" in self.options.keys()
+                and self.options["wrapper_type"]):
             node['wrapper_type'] = self.options["wrapper_type"]
         else:
             node['wrapper_type'] = "div"

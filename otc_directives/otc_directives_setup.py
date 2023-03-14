@@ -15,7 +15,11 @@ from otc_directives.service_card import service_card, service_card_html, Service
 
 
 def setup(app):
-    app.add_node(directive_wrapper, html=(directive_wrapper.visit_div, directive_wrapper.depart_div))
+    app.add_node(
+        directive_wrapper,
+        html=(
+            directive_wrapper.visit_div,
+            directive_wrapper.depart_div))
     app.add_directive("directive_wrapper", DirectiveWrapper)
     app.add_node(service_card,
                  html=(service_card_html, None))

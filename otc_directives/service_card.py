@@ -24,10 +24,12 @@ LOG = logging.getLogger(__name__)
 class service_card(nodes.General, nodes.Element):
     pass
 
+
 METADATA = otc_metadata.services.Services()
 
+
 class ServiceCard(Directive):
-    node_class = service_docs
+    node_class = service_card
     option_spec = {
         'service_type': directives.unchanged_required,
     }
@@ -39,6 +41,7 @@ class ServiceCard(Directive):
         node['service_type'] = self.options.get('service_type')
         return [node]
 
+
 def service_card_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
@@ -47,14 +50,14 @@ def service_card_html(self, node):
     data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     data += (
-        f'<div class="col"><div class="card">'
-        f'<div class="card-body"><h5 class="card-title">'
-        f'Documents</h5></div>'
-        f'<ul class="list-group list-group-flush">'
+        '<div class="col"><div class="card">'
+        '<div class="card-body"><h5 class="card-title">'
+        'Documents</h5></div>'
+        '<ul class="list-group list-group-flush">'
     )
 
     for doc in service['documents']:
-        if not "link" in doc:
+        if "link" not in doc:
             continue
         title = doc["title"]
         link = doc.get("link")
