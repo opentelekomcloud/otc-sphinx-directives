@@ -16,6 +16,7 @@ from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 from sphinx.util import logging
 
+import otc_metadata.services
 
 LOG = logging.getLogger(__name__)
 
@@ -23,31 +24,47 @@ LOG = logging.getLogger(__name__)
 class service_card(nodes.General, nodes.Element):
     pass
 
+METADATA = otc_metadata.services.Services()
 
 class ServiceCard(Directive):
-    node_class = service_card
+    node_class = service_docs
     option_spec = {
-        # 'service_type': directives.unchanged_required,
+        'service_type': directives.unchanged_required,
     }
 
     has_content = False
 
     def run(self):
         node = self.node_class()
-        # node['service_type'] = self.options.get('service_type')
+        node['service_type'] = self.options.get('service_type')
         return [node]
 
 def service_card_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
-    data = '''
-        <div class="card">
-        <h5 class="card-header">Featured</h5>
-        <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        </div>'''
+    # This method renders containers per each service of the category with all
+    # links as individual list items
+    data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
+    service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
+    data += (
+        f'<div class="col"><div class="card">'
+        f'<div class="card-body"><h5 class="card-title">'
+        f'Documents</h5></div>'
+        f'<ul class="list-group list-group-flush">'
+    )
+
+    for doc in service['documents']:
+        if not "link" in doc:
+            continue
+        title = doc["title"]
+        link = doc.get("link")
+        data += (
+            f'<li class="list-group-item"><a href="{link}">'
+            f'<div class="row">'
+            f'<div class="col-md-10 col-sm-10 col-xs-10">{title}</div>'
+            f'</div></a></li>'
+        )
+    data += '</ul></div></div>'
+    data += '</div>'
     self.body.append(data)
     raise nodes.SkipNode
