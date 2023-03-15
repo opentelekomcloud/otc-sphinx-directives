@@ -1,1 +1,1 @@
-# otc-directives
+# otc-sphinx-directives
