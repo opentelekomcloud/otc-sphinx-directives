@@ -10,8 +10,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from otc_directives.directive_wrapper import directive_wrapper, DirectiveWrapper
-from otc_directives.service_card import service_card, service_card_html, ServiceCard
+from otc_sphinx_directives.directive_wrapper import directive_wrapper, DirectiveWrapper
+from otc_sphinx_directives.service_card import service_card, service_card_html, ServiceCard
 
 
 def setup(app):
