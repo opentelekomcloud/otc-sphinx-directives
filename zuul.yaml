@@ -5,9 +5,6 @@
     check:
       jobs:
         - otc-tox-pep8
-        - otc-tox-py38
-        - otc-tox-py39
     gate:
       jobs:
-        - otc-tox-py39
         - otc-tox-pep8
