@@ -71,3 +71,8 @@ class DirectiveWrapper(SphinxDirective):
             node['wrapper_type'] = "div"
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
+
+
+def directive_wrapper_latex(self, node):
+    # do nothing
+    raise nodes.SkipNode

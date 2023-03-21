@@ -71,3 +71,8 @@ def service_card_html(self, node):
     data += '</div>'
     self.body.append(data)
     raise nodes.SkipNode
+
+
+def service_card_latex(self, node):
+    # do nothing
+    raise nodes.SkipNode
