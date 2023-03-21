@@ -11,7 +11,7 @@
 # under the License.
 
 from otc_sphinx_directives.directive_wrapper import directive_wrapper, DirectiveWrapper
-from otc_sphinx_directives.service_card import service_card, service_card_html, service_card_latex, ServiceCard
+from otc_sphinx_directives.service_card import service_card, service_card_html, ServiceCard
 
 
 def latex_do_nothing(self, node):
