@@ -22,7 +22,7 @@ def setup(app):
     app.add_node(
         directive_wrapper,
         html=(directive_wrapper.visit_div, directive_wrapper.depart_div),
-        latex=(latex_do_nothing))
+        latex=(latex_do_nothing, None))
     app.add_directive("directive_wrapper", DirectiveWrapper)
     app.add_node(
         service_card,
