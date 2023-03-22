@@ -4,3 +4,5 @@ build
 ChangeLog
 AUTHORS
 .tox
+.stestr/
+**/__pycache__/
