@@ -6,3 +6,4 @@ AUTHORS
 .tox
 .stestr/
 **/__pycache__/
+./otc_sphinx_directives/__pycache__/
