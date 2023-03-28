@@ -32,6 +32,7 @@ class ServiceCard(Directive):
     node_class = service_card
     option_spec = {
         'service_type': directives.unchanged_required,
+        'id': directives.unchanged,
     }
 
     has_content = False
@@ -39,6 +40,10 @@ class ServiceCard(Directive):
     def run(self):
         node = self.node_class()
         node['service_type'] = self.options.get('service_type')
+        if 'id' in self.options.keys() and self.options['id']:
+            node['id'] = self.options['id']
+        else:
+            node['id'] = ''
         return [node]
 
 
@@ -47,7 +52,11 @@ def service_card_html(self, node):
     # links as individual list items
     # This method renders containers per each service of the category with all
     # links as individual list items
-    data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
+    if node['id']:
+        id = node['id']
+        data = f'<div id="{id}" class="row row-cols-1 row-cols-md-3 g-4">'
+    else:
+        data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     data += (
         '<div class="col"><div class="card">'

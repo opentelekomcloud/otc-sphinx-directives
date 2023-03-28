@@ -16,6 +16,7 @@
 
 extensions = [
     'otcdocstheme',
+    'otc_sphinx_directives'
 ]
 
 
