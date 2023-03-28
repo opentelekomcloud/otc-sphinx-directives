@@ -9,10 +9,6 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-#
-# !!!
-# This file is generated out of template in doc-exports repository.
-# Beware overwriting it locally.
 
 extensions = [
     'otcdocstheme',
