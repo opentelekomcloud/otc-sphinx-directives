@@ -30,12 +30,3 @@ master_doc = 'index'
 
 otcdocs_auto_name = False
 otcdocs_auto_version = False
-
-
-# -- Options for PDF output --------------------------------------------------
-# latex_documents = [
-#     ('index',
-#      'ecs-umn.tex',
-#      u'Elastic Cloud Server - User Guide',
-#      u'OpenTelekomCloud', 'manual'),
-# ]
