@@ -46,6 +46,7 @@ ref_content = (
     '</div>'
 )
 
+
 class TestServiceCardHTML(base.TestCase):
     """Test basic rendering.
 
@@ -61,7 +62,6 @@ class TestServiceCardHTML(base.TestCase):
         self.html = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.soup = BeautifulSoup(self.html, 'html.parser')
         self.content = str(self.soup)
-    
 
     def test_service_card(self):
         """Useless test"""
@@ -69,4 +69,4 @@ class TestServiceCardHTML(base.TestCase):
         self.assertEqual(
             ''.join(ref_content),
             content
-            )
+        )

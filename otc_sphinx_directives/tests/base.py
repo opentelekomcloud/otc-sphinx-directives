@@ -14,8 +14,6 @@
 # under the License.
 
 import os
-
-import fixtures
 import tempfile
 import testtools
 
