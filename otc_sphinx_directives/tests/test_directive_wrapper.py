@@ -17,55 +17,58 @@ from bs4 import BeautifulSoup
 
 from otc_sphinx_directives.tests import base
 
-ref_content = (
-    '<div class="row row-cols-1 row-cols-md-3 g-4" id="123456">'
-    '<div class="col">'
-    '<div class="card">'
-    '<div class="card-body">'
-    '<h5 class="card-title">Documents</h5>'
-    '</div>'
-    '<ul class="list-group list-group-flush">'
-    '<li class="list-group-item"><a href="/elastic-cloud-server/api-ref/">'
-    '<div class="row">'
-    '<div class="col-md-10 col-sm-10 col-xs-10">API Reference</div>'
-    '</div>'
-    '</a></li>'
-    '<li class="list-group-item"><a href="/elastic-cloud-server/dev-guide/">'
-    '<div class="row">'
-    '<div class="col-md-10 col-sm-10 col-xs-10">Developer Guide</div>'
-    '</div>'
-    '</a></li>'
-    '<li class="list-group-item"><a href="/elastic-cloud-server/umn/">'
-    '<div class="row">'
-    '<div class="col-md-10 col-sm-10 col-xs-10">User Guide</div>'
-    '</div>'
-    '</a></li>'
-    '</ul>'
-    '</div>'
-    '</div>'
-    '</div>'
-)
+
+def get_ref_content(wrapper_type=None):
+    ref_content = ()
+
+    if wrapper_type:
+        ref_content += (f'<{wrapper_type} class="ecs" id="7891011">',)
+    else:
+        ref_content += ('<div class="ecs" id="123456">',)
+
+    ref_content += (
+        '<div class="admonition note">',
+        '<p class="admonition-title">Note</p>',
+        '<p>My note.</p>',
+        '</div>',
+    )
+    if wrapper_type:
+        ref_content += (f'</{wrapper_type}>',)
+    else:
+        ref_content += ('</div>',)
+
+    return ref_content
 
 
-class TestServiceCardHTML(base.TestCase):
+class TestDirectiveWrapperHTML(base.TestCase):
     """Test basic rendering.
 
     This can be used to test that basic rendering works for these
     examples, so if someone breaks something we know.
     """
 
-    @base.with_app(buildername='html', srcdir=base.template_dir('service_card'))
+    @base.with_app(buildername='html', srcdir=base.template_dir('directive_wrapper'))
     def setUp(self, app):
-        super(TestServiceCardHTML, self).setUp()
+        super(TestDirectiveWrapperHTML, self).setUp()
         self.app = app
         self.app.build()
         self.html = (app.outdir / 'index.html').read_text(encoding='utf-8')
         self.soup = BeautifulSoup(self.html, 'html.parser')
         self.content = str(self.soup)
 
-    def test_service_card(self):
+    def test_directive_wrapper(self):
         """Useless test"""
         content = str(self.soup.find(id='123456'))
+        ref_content = get_ref_content()
+        self.assertEqual(
+            ''.join(ref_content),
+            content.replace('\n', '')
+        )
+
+    def test_directive_wrapper_with_type(self):
+        """Useless test"""
+        content = str(self.soup.find(id='7891011'))
+        ref_content = get_ref_content(wrapper_type='section')
         self.assertEqual(
             ''.join(ref_content),
             content.replace('\n', '')

@@ -5,5 +5,5 @@ ChangeLog
 AUTHORS
 .tox
 .stestr/
+__pycache__/
 **/__pycache__/
-otc_sphinx_directives/__pycache__/__init__.cpython-310.pyc
