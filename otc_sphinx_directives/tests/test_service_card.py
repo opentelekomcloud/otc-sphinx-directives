@@ -61,7 +61,7 @@ class TestServiceCardHTML(base.TestCase):
         self.content = str(self.soup)
 
     def test_service_card(self):
-        """Useless test"""
+        """Service Card test"""
         content = str(self.soup.find(id='123456'))
         self.assertEqual(
             ''.join(ref_content),

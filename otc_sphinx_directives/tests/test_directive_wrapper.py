@@ -54,7 +54,7 @@ class TestDirectiveWrapperHTML(base.TestCase):
         self.content = str(self.soup)
 
     def test_directive_wrapper(self):
-        """Useless test"""
+        """Directive Wrapper test without type"""
         content = str(self.soup.find(id='123456'))
         ref_content = get_ref_content()
         self.assertEqual(
@@ -63,7 +63,7 @@ class TestDirectiveWrapperHTML(base.TestCase):
         )
 
     def test_directive_wrapper_with_type(self):
-        """Useless test"""
+        """Directive Wrapper test with type"""
         content = str(self.soup.find(id='7891011'))
         ref_content = get_ref_content(wrapper_type='section')
         self.assertEqual(
