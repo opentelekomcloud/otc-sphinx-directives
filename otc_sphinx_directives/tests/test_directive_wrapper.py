@@ -16,23 +16,23 @@ from otc_sphinx_directives.tests import base
 
 
 def get_ref_content(wrapper_type=None):
-    ref_content = ()
+    ref_content = ''
 
     if wrapper_type:
-        ref_content += (f'<{wrapper_type} class="ecs" id="7891011">',)
+        ref_content = f'<{wrapper_type} class="ecs" id="7891011">'
     else:
-        ref_content += ('<div class="ecs" id="123456">',)
+        ref_content += '<div class="ecs" id="123456">'
 
     ref_content += (
-        '<div class="admonition note">',
-        '<p class="admonition-title">Note</p>',
-        '<p>My note.</p>',
-        '</div>',
+        '<div class="admonition note">'
+        '<p class="admonition-title">Note</p>'
+        '<p>My note.</p>'
+        '</div>'
     )
     if wrapper_type:
-        ref_content += (f'</{wrapper_type}>',)
+        ref_content += f'</{wrapper_type}>'
     else:
-        ref_content += ('</div>',)
+        ref_content += '</div>'
 
     return ref_content
 
