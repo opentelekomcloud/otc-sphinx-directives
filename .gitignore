@@ -5,5 +5,4 @@ ChangeLog
 AUTHORS
 .tox
 .stestr/
-__pycache__/
 **/__pycache__/
