@@ -22,7 +22,7 @@ LOG = logging.getLogger(__name__)
 
 class directive_wrapper(nodes.General, nodes.Element):
 
-    def __init__(self, text, **args):
+    def __init__(self, **args):
         super(directive_wrapper, self).__init__()
 
     @staticmethod
