@@ -52,7 +52,6 @@ class DirectiveWrapper(SphinxDirective):
 
     def run(self):
 
-        self.assert_has_content()
         text = '\n'.join(self.content)
         node = directive_wrapper(text)
         if "class" in self.options.keys() and self.options["class"]:
