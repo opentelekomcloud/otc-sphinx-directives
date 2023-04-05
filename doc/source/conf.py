@@ -1,4 +1,4 @@
-project = 'sphinx-test'
+project = 'otc-sphinx-directives'
 copyright = '2023, Ecosystem Squad'
 author = 'Open Telekom Cloud Ecosystem Squad'
 
