@@ -11,11 +11,10 @@
 # under the License.
 
 from docutils import nodes
-
 from docutils.parsers.rst import directives
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
-from docutils import nodes
+
 
 LOG = logging.getLogger(__name__)
 
