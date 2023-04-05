@@ -11,7 +11,6 @@
 # under the License.
 
 from docutils import nodes
-
 from docutils.parsers.rst import directives
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
@@ -22,7 +21,7 @@ LOG = logging.getLogger(__name__)
 
 class directive_wrapper(nodes.General, nodes.Element):
 
-    def __init__(self, text):
+    def __init__(self, text=None, **args):
         super(directive_wrapper, self).__init__()
 
     @staticmethod
@@ -70,3 +69,8 @@ class DirectiveWrapper(SphinxDirective):
             node['wrapper_type'] = "div"
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
+
+
+def directive_wrapper_latex(self, node):
+    # do nothing
+    raise nodes.SkipNode
