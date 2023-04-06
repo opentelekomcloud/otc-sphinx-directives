@@ -11,12 +11,11 @@
 # under the License.
 
 extensions = [
-    'otcdocstheme',
     'otc_sphinx_directives'
 ]
 
 
-html_theme = 'otcdocs'
+html_theme = 'classic'
 html_theme_options = {
 }
 html_title = "Test Case"
@@ -26,7 +25,3 @@ html_copy_source = False
 source_suffix = '.rst'
 source_encoding = 'utf-8'
 master_doc = 'index'
-
-
-otcdocs_auto_name = False
-otcdocs_auto_version = False
