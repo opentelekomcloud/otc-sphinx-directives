@@ -33,6 +33,7 @@ class ServiceCard(Directive):
     option_spec = {
         'service_type': directives.unchanged_required,
         'id': directives.unchanged,
+        # 'umn'
     }
 
     has_content = False
@@ -61,9 +62,9 @@ def service_card_html(self, node):
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     for doc in service['documents']:
-        link = doc.get("link")
+        print("title: " + doc["title"] + "\n")
         data = f'<div class="item-sbv">'
-        data += ( f'<a href="{link}">')
+        data += ( f'<a href="{doc["link"]}">')
         data += (
             '<div class="card">'
             '<div class="card-body">'
@@ -73,13 +74,11 @@ def service_card_html(self, node):
         )
         if "link" not in doc:
             continue
-        title = doc["title"]
-        link = doc.get("link")
         data += (
-            f'<p>blablabkldbdlasrfjdf</p>'
+            f'<p></p>'
         )
-    data += '</div></div></a></div>'
-    self.body.append(data)
+        data += '</div></div></a></div>'
+        self.body.append(data)
     raise nodes.SkipNode
 
 

@@ -9,7 +9,4 @@ Hier steht vieles oder auch nichts.
    :id: test2
 
    .. service_card::
-      :service_type: ecs
-
-   .. service_card::
       :service_type: obs
