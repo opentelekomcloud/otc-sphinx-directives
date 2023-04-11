@@ -33,18 +33,33 @@ class ServiceCard(Directive):
     option_spec = {
         'service_type': directives.unchanged_required,
         'id': directives.unchanged,
-        # 'umn'
+        'api-ref': directives.unchanged,
+        'dev': directives.unchanged,
+        'image-creation-guide': directives.unchanged,
+        'tool-guide': directives.unchanged,
+        'mycredential': directives.unchanged,
+        'public-images': directives.unchanged,
+        'sdk-ref': directives.unchanged,
+        'operation-guide': directives.unchanged,
+        'operation-guide-lts': directives.unchanged,
+        'parallel-file-system': directives.unchanged,
+        'permissions-configuration-guide': directives.unchanged,
+        'swiftapi': directives.unchanged,
+        's3api': directives.unchanged,
+        'umn': directives.unchanged,
     }
 
-    has_content = False
+    has_content = True
 
     def run(self):
         node = self.node_class()
-        node['service_type'] = self.options.get('service_type')
-        if 'id' in self.options.keys() and self.options['id']:
-            node['id'] = self.options['id']
-        else:
-            node['id'] = ''
+
+        for k in self.option_spec:
+            if self.options.get(k):
+                node[k] = self.options.get(k)
+            else:
+                node[k] = ''
+
         return [node]
 
 
@@ -53,29 +68,23 @@ def service_card_html(self, node):
     # links as individual list items
     # This method renders containers per each service of the category with all
     # links as individual list items
-    # if node['id']:
-    #     id = node['id']
-    #     # data = f'<div id="{id}" class="row row-cols-1 row-cols-md-3 g-4">'
-    #     data = f'<div id="{id}" class="item-sbv">'
-    # else:
-    #     # data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
+
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     for doc in service['documents']:
-        print("title: " + doc["title"] + "\n")
-        data = f'<div class="item-sbv">'
-        data += ( f'<a href="{doc["link"]}">')
+        data = '<div class="item-sbv">'
+        data += (f'<a href="{doc["link"]}">')
         data += (
             '<div class="card">'
             '<div class="card-body">'
         )
         data += (
-            f'<h3>{doc["title"]}</h3>'
+            f'<h4>{doc["title"]}</h4>'
         )
         if "link" not in doc:
             continue
         data += (
-            f'<p></p>'
+            f'<p>{node[doc["type"]]}</p>'
         )
         data += '</div></div></a></div>'
         self.body.append(data)
