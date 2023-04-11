@@ -5,9 +5,8 @@ Hier steht vieles oder auch nichts.
 
 
 .. directive_wrapper::
-   :class: test
+   :class: container-sbv
    :id: test2
-   :wrapper_type: section
 
    .. service_card::
       :service_type: ecs

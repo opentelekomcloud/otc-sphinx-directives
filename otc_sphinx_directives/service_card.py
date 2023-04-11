@@ -52,32 +52,33 @@ def service_card_html(self, node):
     # links as individual list items
     # This method renders containers per each service of the category with all
     # links as individual list items
-    if node['id']:
-        id = node['id']
-        data = f'<div id="{id}" class="row row-cols-1 row-cols-md-3 g-4">'
-    else:
-        data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
+    # if node['id']:
+    #     id = node['id']
+    #     # data = f'<div id="{id}" class="row row-cols-1 row-cols-md-3 g-4">'
+    #     data = f'<div id="{id}" class="item-sbv">'
+    # else:
+    #     # data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
+    data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
-    data += (
-        '<div class="col"><div class="card">'
-        '<div class="card-body"><h5 class="card-title">'
-        'Documents</h5></div>'
-        '<ul class="list-group list-group-flush">'
-    )
-
     for doc in service['documents']:
+        link = doc.get("link")
+        data = f'<div class="item-sbv">'
+        data += ( f'<a href="{link}">')
+        data += (
+            '<div class="card">'
+            '<div class="card-body">'
+        )
+        data += (
+            f'<h3>{doc["title"]}</h3>'
+        )
         if "link" not in doc:
             continue
         title = doc["title"]
         link = doc.get("link")
         data += (
-            f'<li class="list-group-item"><a href="{link}">'
-            f'<div class="row">'
-            f'<div class="col-md-10 col-sm-10 col-xs-10">{title}</div>'
-            f'</div></a></li>'
+            f'<p>blablabkldbdlasrfjdf</p>'
         )
-    data += '</ul></div></div>'
-    data += '</div>'
+    data += '</div></div></a></div>'
     self.body.append(data)
     raise nodes.SkipNode
 
