@@ -3,5 +3,6 @@ Documentation Examples
 
 .. toctree::
 
-   directives
-   service_based_view
+   directives_obs
+   directives_obs_clean
+   directives_ecs

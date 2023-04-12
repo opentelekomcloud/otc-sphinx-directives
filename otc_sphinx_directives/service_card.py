@@ -53,7 +53,6 @@ class ServiceCard(Directive):
 
     def run(self):
         node = self.node_class()
-
         for k in self.option_spec:
             if self.options.get(k):
                 node[k] = self.options.get(k)
@@ -71,6 +70,9 @@ def service_card_html(self, node):
 
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
+    docs = service['documents']
+    for doc in docs:
+        print(doc['type'])
     for doc in service['documents']:
         data = '<div class="card item-sbv">'
         data += (f'<a href="{doc["link"]}">')
