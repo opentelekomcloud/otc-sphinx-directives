@@ -72,10 +72,9 @@ def service_card_html(self, node):
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     for doc in service['documents']:
-        data = '<div class="item-sbv">'
+        data = '<div class="card item-sbv">'
         data += (f'<a href="{doc["link"]}">')
         data += (
-            '<div class="card">'
             '<div class="card-body">'
         )
         data += (
@@ -86,7 +85,7 @@ def service_card_html(self, node):
         data += (
             f'<p>{node[doc["type"]]}</p>'
         )
-        data += '</div></div></a></div>'
+        data += '</div></a></div>'
         self.body.append(data)
     raise nodes.SkipNode
 
