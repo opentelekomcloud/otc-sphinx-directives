@@ -21,6 +21,27 @@ import otc_metadata.services
 LOG = logging.getLogger(__name__)
 
 
+def sort_docs(docs):
+    umn = ''
+    api_ref = ''
+    i = 0
+    for doc in docs:
+        if doc['type'] == 'umn':
+            umn = doc
+            docs.pop(i)
+        elif doc['type'] == 'api-ref':
+            api_ref = doc
+            docs.pop(i)
+        i += 1
+
+    sorted_docs = docs
+    if umn:
+        sorted_docs.insert(0, umn)
+    if api_ref:
+        sorted_docs.insert(1, api_ref)
+    return sorted_docs
+
+
 class service_card(nodes.General, nodes.Element):
     pass
 
@@ -70,10 +91,9 @@ def service_card_html(self, node):
 
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
-    docs = service['documents']
+    docs = sort_docs(service['documents'])
+
     for doc in docs:
-        print(doc['type'])
-    for doc in service['documents']:
         data = '<div class="card item-sbv">'
         data += (f'<a href="{doc["link"]}">')
         data += (
