@@ -21,6 +21,27 @@ import otc_metadata.services
 LOG = logging.getLogger(__name__)
 
 
+def sort_docs(docs):
+    umn = ''
+    api_ref = ''
+    i = 0
+    for doc in docs:
+        if doc['type'] == 'umn':
+            umn = doc
+            docs.pop(i)
+        elif doc['type'] == 'api-ref':
+            api_ref = doc
+            docs.pop(i)
+        i += 1
+
+    sorted_docs = docs
+    if umn:
+        sorted_docs.insert(0, umn)
+    if api_ref:
+        sorted_docs.insert(1, api_ref)
+    return sorted_docs
+
+
 class service_card(nodes.General, nodes.Element):
     pass
 
@@ -33,17 +54,32 @@ class ServiceCard(Directive):
     option_spec = {
         'service_type': directives.unchanged_required,
         'id': directives.unchanged,
+        'api-ref': directives.unchanged,
+        'dev': directives.unchanged,
+        'image-creation-guide': directives.unchanged,
+        'tool-guide': directives.unchanged,
+        'mycredential': directives.unchanged,
+        'public-images': directives.unchanged,
+        'sdk-ref': directives.unchanged,
+        'operation-guide': directives.unchanged,
+        'operation-guide-lts': directives.unchanged,
+        'parallel-file-system': directives.unchanged,
+        'permissions-configuration-guide': directives.unchanged,
+        'swiftapi': directives.unchanged,
+        's3api': directives.unchanged,
+        'umn': directives.unchanged,
     }
 
-    has_content = False
+    has_content = True
 
     def run(self):
         node = self.node_class()
-        node['service_type'] = self.options.get('service_type')
-        if 'id' in self.options.keys() and self.options['id']:
-            node['id'] = self.options['id']
-        else:
-            node['id'] = ''
+        for k in self.option_spec:
+            if self.options.get(k):
+                node[k] = self.options.get(k)
+            else:
+                node[k] = ''
+
         return [node]
 
 
@@ -52,33 +88,27 @@ def service_card_html(self, node):
     # links as individual list items
     # This method renders containers per each service of the category with all
     # links as individual list items
-    if node['id']:
-        id = node['id']
-        data = f'<div id="{id}" class="row row-cols-1 row-cols-md-3 g-4">'
-    else:
-        data = '<div class="row row-cols-1 row-cols-md-3 g-4">'
-    service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
-    data += (
-        '<div class="col"><div class="card">'
-        '<div class="card-body"><h5 class="card-title">'
-        'Documents</h5></div>'
-        '<ul class="list-group list-group-flush">'
-    )
 
-    for doc in service['documents']:
+    data = ''
+    service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
+    docs = sort_docs(service['documents'])
+
+    for doc in docs:
+        data = '<div class="card item-sbv">'
+        data += (f'<a href="{doc["link"]}">')
+        data += (
+            '<div class="card-body">'
+        )
+        data += (
+            f'<h4>{doc["title"]}</h4>'
+        )
         if "link" not in doc:
             continue
-        title = doc["title"]
-        link = doc.get("link")
         data += (
-            f'<li class="list-group-item"><a href="{link}">'
-            f'<div class="row">'
-            f'<div class="col-md-10 col-sm-10 col-xs-10">{title}</div>'
-            f'</div></a></li>'
+            f'<p>{node[doc["type"]]}</p>'
         )
-    data += '</ul></div></div>'
-    data += '</div>'
-    self.body.append(data)
+        data += '</div></a></div>'
+        self.body.append(data)
     raise nodes.SkipNode
 
 

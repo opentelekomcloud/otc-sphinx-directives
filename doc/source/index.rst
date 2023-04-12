@@ -1,21 +1,9 @@
-Example Documentation
-=====================
+Documentation
+=============
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :hidden:
 
+   examples/index
 
-Hier steht vieles oder auch nichts.
-
-
-.. directive_wrapper::
-   :class: test
-   :id: test2
-   :wrapper_type: section
-
-   .. service_card::
-      :service_type: ecs
-
-   .. service_card::
-      :service_type: obs
+You will find example pages on the sidebare
