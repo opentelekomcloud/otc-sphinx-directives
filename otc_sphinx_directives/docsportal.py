@@ -10,8 +10,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import yaml
-
 from docutils import nodes
 
 from docutils.parsers.rst import Directive
@@ -105,7 +103,7 @@ class ContainerItem(Directive):
 
 
 def container_item_html(self, node):
-    tmpl = f"""
+    tmpl = """
         <div class="col">
           <div class="card">
             %(img)s
@@ -118,13 +116,13 @@ def container_item_html(self, node):
         """
 
     node['data'] = (
-        "<ul class='list-group list-group-flush'>" +
-        "".join([('<li class="list-group-item"><a href="%(href)s">'
-                  '<div class="col-md-10">%(title)s</div>'
-                  '</a></li>'
-                  % x)
-                 for x in node['services']]) +
-        "</ul>")
+        "<ul class='list-group list-group-flush'>"
+        + "".join([('<li class="list-group-item"><a href="%(href)s">'
+                    '<div class="col-md-10">%(title)s</div>'
+                    '</a></li>'
+                    % x)
+                  for x in node['services']])
+        + "</ul>")
     node['img'] = ''
     if 'image' in node and node['image']:
         node['img'] = (
@@ -160,6 +158,8 @@ def navigator_html(self, node):
                 title = doc["service_title"]
                 link = doc.get("link")
                 img = v["service_type"]
+                print(doc)
+                print('\n\n')
                 data += (
                     f'<li class="list-group-item"><a href="{link}">'
                     f'<div class="row">'
@@ -194,7 +194,7 @@ def service_group_html(self, node):
             f'<ul class="list-group list-group-flush">'
         )
         for doc in v.get("docs", []):
-            if not "link" in doc:
+            if "link" not in doc:
                 continue
             title = doc["title"]
             link = doc.get("link")

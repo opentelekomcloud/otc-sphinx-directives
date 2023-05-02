@@ -18,7 +18,7 @@ from otc_sphinx_directives.docsportal import (
     container_item,
     ServiceGroup,
     Navigator,
-    ContainerItem, 
+    ContainerItem,
     service_group_html,
     navigator_html,
     container_item_html
