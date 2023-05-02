@@ -12,6 +12,17 @@
 
 from otc_sphinx_directives.directive_wrapper import directive_wrapper, directive_wrapper_latex, DirectiveWrapper
 from otc_sphinx_directives.service_card import service_card, service_card_html, service_card_latex, ServiceCard
+from otc_sphinx_directives.docsportal import (
+    service_group,
+    navigator,
+    container_item,
+    ServiceGroup,
+    Navigator,
+    ContainerItem, 
+    service_group_html,
+    navigator_html,
+    container_item_html
+)
 
 
 def setup(app):
@@ -25,6 +36,15 @@ def setup(app):
         html=(service_card_html, None),
         latex=(service_card_latex, None))
     app.add_directive("service_card", ServiceCard)
+    app.add_node(container_item,
+                 html=(container_item_html, None))
+    app.add_node(navigator,
+                 html=(navigator_html, None))
+    app.add_node(service_group,
+                 html=(service_group_html, None))
+    app.add_directive("container_item", ContainerItem)
+    app.add_directive("navigator", Navigator)
+    app.add_directive("service_group", ServiceGroup)
 
     return {
         'version': '0.1',
