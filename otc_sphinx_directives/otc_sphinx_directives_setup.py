@@ -12,9 +12,9 @@
 
 from otc_sphinx_directives.directive_wrapper import directive_wrapper, directive_wrapper_latex, DirectiveWrapper
 from otc_sphinx_directives.service_card import service_card, service_card_html, service_card_latex, ServiceCard
-from otc_sphinx_directives.docsportal_container_item import container_item, container_item_html, ContainerItem
-from otc_sphinx_directives.docsportal_navigator import navigator, navigator_html, Navigator
-from otc_sphinx_directives.docsportal_service_group import service_group, service_group_html, ServiceGroup
+from otc_sphinx_directives.container_item import container_item, container_item_html, ContainerItem
+from otc_sphinx_directives.navigator import navigator, navigator_html, Navigator
+from otc_sphinx_directives.service_group import service_group, service_group_html, ServiceGroup
 
 
 def setup(app):
