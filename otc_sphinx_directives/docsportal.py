@@ -158,8 +158,6 @@ def navigator_html(self, node):
                 title = doc["service_title"]
                 link = doc.get("link")
                 img = v["service_type"]
-                print(doc)
-                print('\n\n')
                 data += (
                     f'<li class="list-group-item"><a href="{link}">'
                     f'<div class="row">'
