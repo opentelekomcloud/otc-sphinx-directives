@@ -23,15 +23,14 @@ LOG = logging.getLogger(__name__)
 METADATA = otc_metadata.services.Services()
 
 
-class navigator(nodes.General, nodes.Element):
+class service_navigator(nodes.General, nodes.Element):
     pass
 
 
-class Navigator(Directive):
-    node_class = navigator
+class ServiceNavigator(Directive):
+    node_class = service_navigator
     option_spec = {
         'class': directives.unchanged,
-        'document_type': directives.unchanged,
         'environment': directives.unchanged_required
     }
 
@@ -39,13 +38,12 @@ class Navigator(Directive):
 
     def run(self):
         node = self.node_class()
-        node['document_type'] = self.options['document_type']
         node['environment'] = self.options.get('environment', 'public')
         node['class'] = self.options.get('class', 'navigator-container')
         return [node]
 
 
-def navigator_html(self, node):
+def service_navigator_html(self, node):
     # This method renders containers of service groups with links to the
     # document of the specified type
     data = f'<div class="{node["class"]} container-docsportal">'
