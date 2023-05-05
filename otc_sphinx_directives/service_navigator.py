@@ -62,6 +62,9 @@ def service_navigator_html(self, node):
             title = service['service_title']
             link = service['service_uri']
             img = service['service_type']
+            environment = service['environment']
+            if environment == "internal" and node['environment'] != "internal":
+                continue
             data += (
                 f'<li class="list-group-item"><a href="{link}">'
                 f'<div class="row">'
