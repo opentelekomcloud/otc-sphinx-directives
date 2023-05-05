@@ -59,26 +59,20 @@ def navigator_html(self, node):
             f'<h5 class="card-title">{category_title}</h5></div>'
             f'<ul class="list-group list-group-flush">'
         )
-        for k, v in METADATA.services_with_docs_by_category(
-                category=category, environment=node['environment']).items():
-            title = v["service_title"]
-            for doc in v.get("docs", []):
-                if "link" not in doc:
-                    continue
-                if "type" not in doc or doc["type"] != node["document_type"]:
-                    continue
-                title = doc["service_title"]
-                link = doc.get("link")
-                img = v["service_type"]
-                data += (
-                    f'<li class="list-group-item"><a href="{link}">'
-                    f'<div class="row">'
-                    f'<div class="col-2">'
-                    f'<img src="_static/images/services/{img}.svg">'
-                    f'</div>'
-                    f'<div class="col-10">{title}</div>'
-                    f'</div></a></li>'
-                )
+
+        for service in METADATA.services_by_category(category=category):
+            title = service['service_title']
+            link = service['service_uri']
+            img = service['service_type']
+            data += (
+                f'<li class="list-group-item"><a href="{link}">'
+                f'<div class="row">'
+                f'<div class="col-2">'
+                f'<img src="_static/images/services/{img}.svg">'
+                f'</div>'
+                f'<div class="col-10">{title}</div>'
+                f'</div></a></li>'
+            )
 
         data += '</ul></div>'
 
