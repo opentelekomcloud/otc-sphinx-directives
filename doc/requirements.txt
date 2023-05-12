@@ -5,3 +5,4 @@
 # docs.
 
 otcdocstheme
+otc-sphinx-directives>=0.1.0

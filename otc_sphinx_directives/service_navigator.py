@@ -61,6 +61,11 @@ def service_navigator_html(self, node):
         for service in METADATA.services_by_category(category=category):
             title = service['service_title']
             link = service['service_uri']
+            if link:
+                if (link[:-1] != '/'):
+                    link = link + '/index.html'
+                else:
+                    link = link + 'index.html'
             img = service['service_type']
             environment = service['environment']
             if environment == "internal" and node['environment'] != "internal":
