@@ -94,8 +94,14 @@ def service_card_html(self, node):
     docs = sort_docs(service['documents'])
 
     for doc in docs:
+        link = ""
+        if service["service"]["service_uri"] in doc["link"]:
+            link = doc['link'].split("/")[2]
+        else:
+            link = doc['link']
+
         data = '<div class="card item-sbv">'
-        data += (f'<a href="{doc["link"]}">')
+        data += (f'<a href="{link}">')
         data += (
             '<div class="card-body">'
         )
