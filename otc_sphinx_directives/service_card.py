@@ -96,7 +96,7 @@ def service_card_html(self, node):
     for doc in docs:
         link = ""
         if service["service"]["service_uri"] in doc["link"]:
-            link = doc['link'].split("/")[2]
+            link = doc['link'].split("/")[2] + '/'
         else:
             link = doc['link']
 

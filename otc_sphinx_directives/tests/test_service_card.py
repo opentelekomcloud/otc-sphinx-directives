@@ -17,15 +17,15 @@ from otc_sphinx_directives.tests import base
 ref_content = (
     '<div class="ecs" id="123456">'
     '<div class="card item-sbv">'
-    '<a href="/elastic-cloud-server/umn/">'
+    '<a href="umn/">'
     '<div class="card-body">'
     '<h4>User Guide</h4><p></p></div></a></div>'
     '<div class="card item-sbv">'
-    '<a href="/elastic-cloud-server/api-ref/">'
+    '<a href="api-ref/">'
     '<div class="card-body">'
     '<h4>API Reference</h4><p></p></div></a></div>'
     '<div class="card item-sbv">'
-    '<a href="/elastic-cloud-server/dev-guide/">'
+    '<a href="dev-guide/">'
     '<div class="card-body">'
     '<h4>Developer Guide</h4><p></p></div></a></div></div>'
 )
