@@ -62,7 +62,7 @@ def service_navigator_html(self, node):
             title = service['service_title']
             link = service['service_uri']
             if link:
-                if (link[:-1] != '/'):
+                if (link[-1] != '/'):
                     link = link + '/index.html'
                 else:
                     link = link + 'index.html'
