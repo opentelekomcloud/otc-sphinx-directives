@@ -50,6 +50,7 @@ def navigator_html(self, node):
     # document of the specified type
     data = f'<div class="{node["class"]} container-docsportal">'
 
+    METADATA._sort_data()
     for cat in METADATA.service_categories:
         category = cat["name"]
         category_title = cat["title"]
