@@ -55,7 +55,6 @@ class ServiceCard(Directive):
         'service_type': directives.unchanged_required,
         'id': directives.unchanged,
         'api-ref': directives.unchanged,
-        'best-practise': directives.unchanged,
         'dev': directives.unchanged,
         'image-creation-guide': directives.unchanged,
         'tool-guide': directives.unchanged,
@@ -70,6 +69,7 @@ class ServiceCard(Directive):
         'swiftapi': directives.unchanged,
         's3api': directives.unchanged,
         'umn': directives.unchanged,
+        'best-practise': directives.unchanged,
     }
 
     has_content = True
