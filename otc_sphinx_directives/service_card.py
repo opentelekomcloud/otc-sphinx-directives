@@ -65,9 +65,11 @@ class ServiceCard(Directive):
         'operation-guide-lts': directives.unchanged,
         'parallel-file-system': directives.unchanged,
         'permissions-configuration-guide': directives.unchanged,
+        'permissions': directives.unchanged,
         'swiftapi': directives.unchanged,
         's3api': directives.unchanged,
         'umn': directives.unchanged,
+        'best-practise': directives.unchanged,
     }
 
     has_content = True
