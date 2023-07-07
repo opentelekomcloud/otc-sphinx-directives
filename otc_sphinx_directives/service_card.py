@@ -69,7 +69,7 @@ class ServiceCard(Directive):
         'swiftapi': directives.unchanged,
         's3api': directives.unchanged,
         'umn': directives.unchanged,
-        'best-practise': directives.unchanged,
+        'best-practice': directives.unchanged,
     }
 
     has_content = True
