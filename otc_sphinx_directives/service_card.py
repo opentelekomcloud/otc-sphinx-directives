@@ -70,6 +70,7 @@ class ServiceCard(Directive):
         's3api': directives.unchanged,
         'umn': directives.unchanged,
         'best-practice': directives.unchanged,
+        'environment': directives.unchanged
     }
 
     has_content = True
@@ -79,6 +80,8 @@ class ServiceCard(Directive):
         for k in self.option_spec:
             if self.options.get(k):
                 node[k] = self.options.get(k)
+            elif k == 'environment':
+                node[k] = 'public'
             else:
                 node[k] = ''
 
@@ -88,14 +91,17 @@ class ServiceCard(Directive):
 def service_card_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
-    # This method renders containers per each service of the category with all
-    # links as individual list items
 
     data = ''
     service = METADATA.get_service_with_docs_by_service_type(node['service_type'])
     docs = sort_docs(service['documents'])
 
     for doc in docs:
+        environment = doc.get('environment')
+        if environment == "hidden":
+            continue
+        if environment == "internal" and node['environment'] != "internal":
+            continue
         link = ""
         if service["service"]["service_uri"] in doc["link"]:
             link = doc['link'].split("/")[2] + '/'
