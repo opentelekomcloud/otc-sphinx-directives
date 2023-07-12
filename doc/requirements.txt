@@ -4,5 +4,6 @@
 # Put them in here will make it clear that those are only needed for
 # docs.
 
+pyyaml
 otcdocstheme
-otc-sphinx-directives>=0.1.0
+git+https://gitea.eco.tsi-dev.otc-service.com/infra/otc-metadata.git#egg=otc_metadata
