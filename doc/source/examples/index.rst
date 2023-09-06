@@ -8,3 +8,4 @@ Documentation Examples
    directives_ecs
    directives_ecs_internal
    directives_docsportal
+   container_item

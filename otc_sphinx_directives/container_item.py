@@ -10,6 +10,25 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+# Description:
+# The directive container_item can get 3 options.
+#
+# Options:
+#  - title: takes the Name of the linked item
+#  - image: takes the link to the picture in the static folder
+#  - external: if set, the link opens in a new tab
+#
+# Usage:
+# .. container:: row row-cols-1 row-cols-md-3 g-4
+#
+#    .. container_item::
+#       :title: Ansible
+#       :image: _static/images/ansible.svg
+#       :external:
+#
+#       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
+
+
 from docutils import nodes
 
 from docutils.parsers.rst import Directive
@@ -33,6 +52,7 @@ class ContainerItem(Directive):
     option_spec = {
         'title': directives.unchanged,
         'image': directives.unchanged,
+        'external': directives.unchanged
     }
 
     has_content = True
@@ -42,6 +62,8 @@ class ContainerItem(Directive):
         doctree_node['title'] = self.options['title']
         if 'image' in self.options:
             doctree_node['image'] = self.options['image']
+        # Check, if 'external' is available in self.options and set the value for the node
+        doctree_node['external'] = 'external' in self.options
         services = []
         for ent in self.content:
             _srv = ent.strip('- ')
@@ -71,14 +93,24 @@ def container_item_html(self, node):
         </div>
         """
 
-    node['data'] = (
-        "<ul class='list-group list-group-flush'>"
-        + "".join([('<li class="list-group-item"><a href="%(href)s">'
-                    '<div class="col-md-10">%(title)s</div>'
-                    '</a></li>'
-                    % x)
-                  for x in node['services']])
-        + "</ul>")
+    if node['external']:
+        node['data'] = (
+            "<ul class='list-group list-group-flush'>"
+            + "".join([('<li class="list-group-item"><a href="%(href)s" target="_blank" rel="noopener noreferrer">'
+                        '<div class="col-md-10">%(title)s</div>'
+                        '</a></li>'
+                        % x)
+                      for x in node['services']])
+            + "</ul>")
+    else:
+        node['data'] = (
+            "<ul class='list-group list-group-flush'>"
+            + "".join([('<li class="list-group-item"><a href="%(href)s">'
+                        '<div class="col-md-10">%(title)s</div>'
+                        '</a></li>'
+                        % x)
+                      for x in node['services']])
+            + "</ul>")
     node['img'] = ''
     if 'image' in node and node['image']:
         node['img'] = (
