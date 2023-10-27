@@ -70,6 +70,7 @@ class ServiceCard(Directive):
         's3api': directives.unchanged,
         'umn': directives.unchanged,
         'best-practice': directives.unchanged,
+        'sqlreference': directives.unchanged,
         'environment': directives.unchanged
     }
 
