@@ -71,7 +71,8 @@ class ServiceCard(Directive):
         'umn': directives.unchanged,
         'best-practice': directives.unchanged,
         'sqlreference': directives.unchanged,
-        'environment': directives.unchanged
+        'environment': directives.unchanged,
+        'guidelines': directives.unchanged
     }
 
     has_content = True
