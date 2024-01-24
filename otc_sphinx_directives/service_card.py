@@ -55,6 +55,8 @@ class ServiceCard(Directive):
         'service_type': directives.unchanged_required,
         'id': directives.unchanged,
         'api-ref': directives.unchanged,
+        'blueprints': directives.unchanged,
+        'caf': directives.unchanged,
         'dev': directives.unchanged,
         'image-creation-guide': directives.unchanged,
         'tool-guide': directives.unchanged,
