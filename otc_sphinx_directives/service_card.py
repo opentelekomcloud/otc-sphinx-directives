@@ -71,6 +71,7 @@ class ServiceCard(Directive):
         'swiftapi': directives.unchanged,
         's3api': directives.unchanged,
         'umn': directives.unchanged,
+        'umn2': directives.unchanged,
         'best-practice': directives.unchanged,
         'sqlreference': directives.unchanged,
         'environment': directives.unchanged,
