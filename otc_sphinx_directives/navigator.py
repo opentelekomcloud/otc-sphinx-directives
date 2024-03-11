@@ -75,7 +75,7 @@ def navigator_html(self, node):
                     f'<li class="list-group-item"><a href="{link}">'
                     f'<div class="row">'
                     f'<div class="col-2">'
-                    f'<img src="_static/images/services/{img}.svg">'
+                    f'<img class="icon-svg" src="_static/images/services/{img}.svg">'
                     f'</div>'
                     f'<div class="col-10">{title}</div>'
                     f'</div></a></li>'
