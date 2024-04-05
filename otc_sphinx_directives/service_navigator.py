@@ -78,7 +78,7 @@ def service_navigator_html(self, node):
                 f'<div class="row">'
                 f'<div class="col-2">'
                 f'<picture>'
-                f'<source srcSet="_static/images/services/dark/{img}.svg" media="(prefers-color-scheme: dark)" />'
+                f'<source class="icon-svg" srcSet="_static/images/services/dark/{img}.svg" media="(prefers-color-scheme: dark)" />'
                 f'<img class="icon-svg" src="_static/images/services/light/{img}.svg">'
                 f'</picture>'
                 f'</div>'
