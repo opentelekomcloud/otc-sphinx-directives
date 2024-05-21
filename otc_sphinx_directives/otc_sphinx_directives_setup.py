@@ -17,6 +17,7 @@ from otc_sphinx_directives.service_navigator import service_navigator, service_n
 from otc_sphinx_directives.service_group import service_group, service_group_html, ServiceGroup
 from otc_sphinx_directives.document_navigator import document_navigator, document_navigator_html, DocumentNavigator
 from otc_sphinx_directives.navigator import navigator, navigator_html, Navigator
+from otc_sphinx_directives.article_author import article_author, article_author_html, ArticleAuthor
 
 
 def setup(app):
@@ -24,12 +25,10 @@ def setup(app):
         directive_wrapper,
         html=(directive_wrapper.visit_div, directive_wrapper.depart_div),
         latex=(directive_wrapper_latex, None))
-    app.add_directive("directive_wrapper", DirectiveWrapper)
     app.add_node(
         service_card,
         html=(service_card_html, None),
         latex=(service_card_latex, None))
-    app.add_directive("service_card", ServiceCard)
     app.add_node(container_item,
                  html=(container_item_html, None))
     app.add_node(navigator,
@@ -40,11 +39,17 @@ def setup(app):
                  html=(document_navigator_html, None))
     app.add_node(service_group,
                  html=(service_group_html, None))
+    app.add_node(article_author,
+                 html=(article_author_html, None),
+                 latex=(article_author_latex, None))
+    app.add_directive("directive_wrapper", DirectiveWrapper)
+    app.add_directive("service_card", ServiceCard)
     app.add_directive("container_item", ContainerItem)
     app.add_directive("navigator", Navigator)
     app.add_directive("service_navigator", ServiceNavigator)
     app.add_directive("document_navigator", DocumentNavigator)
     app.add_directive("service_group", ServiceGroup)
+    app.add_directive("article_author", ArticleAuthor)
 
     return {
         'version': '0.1',
