@@ -25,7 +25,7 @@ class docs_link(nodes.General, nodes.Element):
 
 class DocsLink(Directive):
     node_class = docs_link
-    
+
     has_content = True
 
     option_spec = {
@@ -38,7 +38,7 @@ class DocsLink(Directive):
         for k in self.option_spec:
             if self.options.get(k):
                 node[k] = self.options.get(k)
-        
+
         confpy_config = self.state.document.settings.env.config
         node["environment"] = confpy_config.otcdocs_doc_environment
         node["search_environment"] = confpy_config.otcdocs_search_environment
