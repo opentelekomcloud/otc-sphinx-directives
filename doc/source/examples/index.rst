@@ -9,3 +9,4 @@ Documentation Examples
    directives_ecs_internal
    directives_docsportal
    container_item
+   docs_link

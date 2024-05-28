@@ -17,6 +17,7 @@ from otc_sphinx_directives.service_navigator import service_navigator, service_n
 from otc_sphinx_directives.service_group import service_group, service_group_html, ServiceGroup
 from otc_sphinx_directives.document_navigator import document_navigator, document_navigator_html, DocumentNavigator
 from otc_sphinx_directives.navigator import navigator, navigator_html, Navigator
+from otc_sphinx_directives.docs_link import docs_link, docs_link_html, DocsLink
 
 
 def setup(app):
@@ -40,11 +41,14 @@ def setup(app):
                  html=(document_navigator_html, None))
     app.add_node(service_group,
                  html=(service_group_html, None))
+    app.add_node(docs_link,
+                 html=(docs_link_html, None))
     app.add_directive("container_item", ContainerItem)
     app.add_directive("navigator", Navigator)
     app.add_directive("service_navigator", ServiceNavigator)
     app.add_directive("document_navigator", DocumentNavigator)
     app.add_directive("service_group", ServiceGroup)
+    app.add_directive("docs_link", DocsLink)
 
     return {
         'version': '0.1',
