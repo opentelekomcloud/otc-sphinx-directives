@@ -54,7 +54,10 @@ def service_navigator_html(self, node):
         category_title = cat["title"]
 
         # Skip category if there are no services with the specified environment
-        if len(METADATA.services_with_docs_by_category(category=category, environment=node['environment'])) == 0:
+        if node['environment'] == "internal":
+            if len(METADATA.services_by_category(category=category, environment=node['environment'])) + len(METADATA.services_by_category(category=category, environment="public")) == 0:
+                continue
+        elif len(METADATA.services_by_category(category=category, environment=node['environment'])) == 0:
             continue
 
         data += (
