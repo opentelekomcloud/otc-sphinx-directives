@@ -52,6 +52,11 @@ def service_navigator_html(self, node):
     for cat in METADATA.service_categories:
         category = cat["name"]
         category_title = cat["title"]
+
+        # Skip category if there are no services with the specified environment
+        if len(METADATA.services_with_docs_by_category(category=category, environment=node['environment'])) == 0:
+            continue
+        
         data += (
             f'<div class="card item-docsportal">'
             f'<div class="card-body">'
