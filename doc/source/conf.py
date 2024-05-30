@@ -1,5 +1,5 @@
 project = 'otc_sphinx_directives'
-copyright = '2023, Ecosystem Squad'
+copyright = '2024, Ecosystem Squad'
 author = 'Open Telekom Cloud Ecosystem Squad'
 
 extensions = [
@@ -12,3 +12,6 @@ source_suffix = '.rst'
 master_doc = 'index'
 html_theme = 'otcdocs'
 html_static_path = ['_static']
+
+otcdocs_doc_environment = 'internal'
+otcdocs_search_environment = 'hc_de'
