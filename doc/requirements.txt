@@ -6,4 +6,4 @@
 
 pyyaml
 otcdocstheme
-git+https://gitea.eco.tsi-dev.otc-service.com/infra/otc-metadata-swiss.git#egg=otc_metadata
+git+https://gitea.eco.tsi-dev.otc-service.com/infra/otc-metadata.git#egg=otc_metadata
