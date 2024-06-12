@@ -81,9 +81,7 @@ class CardItem(Directive):
 def card_item_html(self, node):
 
     data = f'''
-    <div
-        class="card-item"
-        style="width: calc(25% - 1.5rem);border-radius: var(--telekom-radius-standard);box-shadow: 0px 8px 32px 0px hsla(0, 0%, 0%, 0.1), 0px 4px 8px 0px hsla(0, 0%, 0%, 0.1);background-color: var(--telekom-color-background-surface);">
+    <div class="card-item">
         <div>
             <img
                 style="width: 100%; max-height: 160px; margin: 0;"
