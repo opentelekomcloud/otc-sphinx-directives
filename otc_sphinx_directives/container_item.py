@@ -89,7 +89,7 @@ def container_item_html(self, node):
                 style="width: 100%; max-height: 160px; margin: 0;"
                 src="{node['image']}"
                 alt="{node['title']}"
-                className="card_image"
+                class="container_item_image"
             </img>
             <div style="padding: 1rem;display: flex;flex-direction: column;">
                 <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>
