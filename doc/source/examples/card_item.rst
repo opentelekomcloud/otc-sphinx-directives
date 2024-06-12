@@ -3,7 +3,7 @@ Card Item Test
 
 .. directive_wrapper::
    :class: card-item-wrapper
-   
+
    .. card_item::
       :title: Ansible
       :image: ../_static/images/ansible.svg
@@ -12,7 +12,14 @@ Card Item Test
       - OTC Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
       - Release Notes|https://docs.otc-service.com/ansible-collection-cloud
       - Release Notes|https://docs.otc-service.com/ansible-collection-cloud
-   
+
+   .. card_item::
+      :title: Ansible
+      :image: ../_static/images/ansible.svg
+      :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
+
+      - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
+
    .. card_item::
       :title: Ansible
       :image: ../_static/images/ansible.svg
@@ -26,13 +33,6 @@ Card Item Test
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
-   
-   .. card_item::
-      :title: Ansible
-      :image: ../_static/images/ansible.svg
-      :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
-
-      - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 
    .. card_item::
       :title: Ansible
@@ -40,7 +40,7 @@ Card Item Test
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
-   
+
    .. card_item::
       :title: Ansible
       :image: ../_static/images/ansible.svg

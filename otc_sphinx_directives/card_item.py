@@ -21,12 +21,12 @@
 # Usage:
 # .. directive_wrapper::
 #    :class: card-item-wrapper
-   
+#
 #    .. card_item::
 #       :title: Ansible
 #       :image: ../_static/images/ansible.svg
 #       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
-
+#
 #       - OTC Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 #       - Release Notes|https://docs.otc-service.com/ansible-collection-cloud
 
@@ -42,6 +42,7 @@ LOG = logging.getLogger(__name__)
 
 class card_item(nodes.General, nodes.Element):
     pass
+
 
 class CardItem(Directive):
     node_class = card_item
@@ -100,7 +101,7 @@ def card_item_html(self, node):
                 <a href="{link['href']}" class="link">{link['title']}</a>
         '''
 
-    data += f'''
+    data += '''
             </div>
         </div>
     </div>
