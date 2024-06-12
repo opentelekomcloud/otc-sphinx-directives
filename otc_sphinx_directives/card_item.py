@@ -11,7 +11,7 @@
 # under the License.
 
 # Description:
-# The directive container_item can get 3 options.
+# The directive card_item can get 3 options.
 #
 # Options:
 #  - title: takes the Name of the linked item
@@ -20,10 +20,9 @@
 #
 # Usage:
 # .. directive_wrapper::
-#    :class: container_item_wrapper
-#    :style: display: flex;flex-direction: row;flex-wrap: wrap;gap: 1.5rem;
+#    :class: card-item-wrapper
    
-#    .. container_item::
+#    .. card_item::
 #       :title: Ansible
 #       :image: ../_static/images/ansible.svg
 #       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
@@ -41,11 +40,11 @@ from sphinx.util import logging
 LOG = logging.getLogger(__name__)
 
 
-class container_item(nodes.General, nodes.Element):
+class card_item(nodes.General, nodes.Element):
     pass
 
-class ContainerItem(Directive):
-    node_class = container_item
+class CardItem(Directive):
+    node_class = card_item
     option_spec = {
         'title': directives.unchanged_required,
         'image': directives.unchanged_required,
@@ -56,7 +55,7 @@ class ContainerItem(Directive):
     has_content = True
 
     def run(self):
-        node = container_item()
+        node = card_item()
         node['title'] = self.options['title']
         node['image'] = self.options['image']
         node['description'] = self.options['description']
@@ -78,18 +77,17 @@ class ContainerItem(Directive):
         return [node]
 
 
-def container_item_html(self, node):
+def card_item_html(self, node):
 
     data = f'''
     <div
-        class="card_container"
+        class="card-item"
         style="width: calc(25% - 1.5rem);border-radius: var(--telekom-radius-standard);box-shadow: 0px 8px 32px 0px hsla(0, 0%, 0%, 0.1), 0px 4px 8px 0px hsla(0, 0%, 0%, 0.1);background-color: var(--telekom-color-background-surface);">
         <div>
             <img
                 style="width: 100%; max-height: 160px; margin: 0;"
                 src="{node['image']}"
                 alt="{node['title']}"
-                class="container_item_image"
             </img>
             <div style="padding: 1rem;display: flex;flex-direction: column;">
                 <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>

@@ -17,6 +17,7 @@ from otc_sphinx_directives.service_navigator import service_navigator, service_n
 from otc_sphinx_directives.service_group import service_group, service_group_html, ServiceGroup
 from otc_sphinx_directives.document_navigator import document_navigator, document_navigator_html, DocumentNavigator
 from otc_sphinx_directives.navigator import navigator, navigator_html, Navigator
+from otc_sphinx_directives.card_item import card_item, card_item_html, CardItem
 
 
 def setup(app):
