@@ -9,5 +9,6 @@ Documentation Examples
    directives_ecs_internal
    directives_docsportal
    container_item
+   card_item
    service_navigator
    docs_link
