@@ -85,7 +85,7 @@ def container_item_html(self, node):
 
     data = f'''
         <scale-card>
-            <div style="margin: -1.5rem;display: flex;flex-wrap: wrap;justify-content: center;">
+            <div style="margin: -1.5rem;display: flex;justify-content: center;flex-direction: column;">
             <img
                 style="margin: 0;display: flex;flex-wrap: wrap;justify-content: center;align-content: center;max-height: 160px;"
                 src="{node['image']}"
