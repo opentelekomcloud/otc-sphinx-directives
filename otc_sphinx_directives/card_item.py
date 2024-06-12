@@ -84,11 +84,11 @@ def card_item_html(self, node):
     <div class="card-item">
         <div>
             <img
-                style="width: 100%; max-height: 160px; margin: 0;"
+                class="card-item-img"
                 src="{node['image']}"
                 alt="{node['title']}"
             </img>
-            <div style="padding: 1rem;display: flex;flex-direction: column;">
+            <div class="card-item-content">
                 <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>
                 <div style="padding-bottom: 1rem;">
                     {node['description']}
