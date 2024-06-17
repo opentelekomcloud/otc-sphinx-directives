@@ -63,7 +63,6 @@ class DirectiveWrapper(SphinxDirective):
         node['id'] = self.options.get('id', '')
         node['wrapper_type'] = self.options.get('wrapper_type', 'div')
         node['style'] = self.options.get('style', '')
-        print(self.options)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 

@@ -83,11 +83,10 @@ def card_item_html(self, node):
     data = f'''
     <div class="card-item">
         <div>
-            <img
-                class="card-item-img"
-                src="{node['image']}"
-                alt="{node['title']}"
-            </img>
+            <picture>
+                <source alt="{node['title']}" srcSet="/_static/images/dark/{node['image']}" media="(prefers-color-scheme: dark)" />
+                <img class="card-item-img" alt="{node['title']}" src="/_static/images/light/{node['image']}">
+            </picture>
             <div class="card-item-content">
                 <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>
                 <div style="padding-bottom: 1rem;">

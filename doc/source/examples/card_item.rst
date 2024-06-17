@@ -6,7 +6,7 @@ Card Item Test
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - OTC Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
@@ -15,35 +15,35 @@ Card Item Test
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
 
    .. card_item::
       :title: Ansible
-      :image: ../_static/images/ansible.svg
+      :image: ansible.svg
       :description: Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
       - Ansible Collection|https://docs.otc-service.com/ansible-collection-cloud
