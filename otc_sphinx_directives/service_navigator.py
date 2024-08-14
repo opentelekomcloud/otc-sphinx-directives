@@ -64,7 +64,7 @@ def service_navigator_html(self, node):
             f'<div class="card item-docsportal">'
             f'<div class="card-body">'
             f'<h5 class="card-title">{category_title}</h5></div>'
-            f'<ul class="list-group list-group-flush">'
+            f'<div class="card-services">'
         )
 
         for service in METADATA.services_by_category(category=category):
@@ -82,19 +82,18 @@ def service_navigator_html(self, node):
             if environment == "internal" and node['environment'] != "internal":
                 continue
             data += (
-                f'<li class="list-group-item"><a href="{link}">'
-                f'<div class="row">'
-                f'<div class="col-2">'
-                f'<picture>'
-                f'<source class="icon-svg" srcSet="_static/images/services/dark/{img}.svg" media="(prefers-color-scheme: dark)" />'
-                f'<img class="icon-svg" src="_static/images/services/light/{img}.svg">'
-                f'</picture>'
-                f'</div>'
-                f'<div class="col-10">{title}</div>'
-                f'</div></a></li>'
+                f'<div><a href="{link}" class="service-entries">'
+                f'  <div class="">'
+                f'      <picture>'
+                f'          <source class="icon-svg" srcSet="_static/images/services/dark/{img}.svg" media="(prefers-color-scheme: dark)" />'
+                f'          <img class="icon-svg" src="_static/images/services/light/{img}.svg">'
+                f'      </picture>'
+                f'  </div>'
+                f'<div class="align-self-center">{title}</div>'
+                f'</a></div>'
             )
 
-        data += '</ul></div>'
+        data += '</div></div>'
 
     data += '</div>'
 
