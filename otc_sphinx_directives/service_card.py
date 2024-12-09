@@ -114,7 +114,7 @@ def service_card_html(self, node):
         else:
             link = doc['link']
 
-        data = '<div style="display: flex; flex-direction: column" class="card item-sbv">'
+        data = '<div class="card item-sbv item-sbv-flex">'
         data += (f'<a href="{link}">')
         data += (
             '<div class="card-body">'
@@ -128,16 +128,13 @@ def service_card_html(self, node):
             f'<p>{node[doc["type"]]}</p>'
         )
         data += '</div></a>'
-        try:
-            if doc["pdf_name"]:
-                data += (f'''
-                         <scale-button variant="secondary" style="align-self: end;margin-right: 1rem;margin-bottom: 1rem;">
-                            <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file> Download PDF
-                         </scale-button>
-                        ''')
-
-        except Exception as e:
-            print("Service " + node['service_type'] + " exception: " + str(e))
+        if doc["pdf_enabled"]:
+            data += (f'''
+                        <scale-button variant="secondary" class="pdf-button-sbv" href="/{node['service_type']}-{doc["type"]}.pdf" target="_blank">
+                        <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
+                        <span style="font-weight: normal;">Download PDF</span>
+                        </scale-button>
+                    ''')
         
         data += '</div>'
 
