@@ -128,13 +128,16 @@ def service_card_html(self, node):
             f'<p>{node[doc["type"]]}</p>'
         )
         data += '</div></a>'
-        if doc["pdf_enabled"]:
-            data += (f'''
-                        <scale-button variant="secondary" class="pdf-button-sbv" href="/{node['service_type']}-{doc["type"]}.pdf" target="_blank">
-                        <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
-                        <span style="font-weight: normal;">Download PDF</span>
-                        </scale-button>
-                    ''')
+        try:
+            if doc["pdf_enabled"]:
+                data += (f'''
+                            <scale-button variant="secondary" class="pdf-button-sbv" href="/{node['service_type']}-{doc["type"]}.pdf" target="_blank">
+                            <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
+                            <span style="font-weight: normal;">Download PDF</span>
+                            </scale-button>
+                        ''')
+        except Exception as e:
+            print("Service " + node['service_type'] + " has not defined pdf_enabled!")
         
         data += '</div>'
 
