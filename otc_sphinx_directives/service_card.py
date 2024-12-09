@@ -102,7 +102,7 @@ def service_card_html(self, node):
     docs = sort_docs(service['documents'])
 
     for doc in docs:
-        
+
         environment = doc.get('environment')
         if environment == "hidden":
             continue
@@ -136,13 +136,13 @@ def service_card_html(self, node):
                             <span style="font-weight: normal;">Download PDF</span>
                             </scale-button>
                         ''')
-        except Exception as e:
+        except Exception:
             print("Service " + node['service_type'] + " has not defined pdf_enabled!")
-        
+
         data += '</div>'
 
         self.body.append(data)
-        
+
     raise nodes.SkipNode
 
 
