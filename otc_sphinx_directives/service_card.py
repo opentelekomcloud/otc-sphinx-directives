@@ -126,7 +126,24 @@ def service_card_html(self, node):
         data += (
             f'<p>{node[doc["type"]]}</p>'
         )
+<<<<<<< Updated upstream
         data += '</div></a></div>'
+=======
+        data += '</div></a>'
+        try:
+            if doc["pdf_enabled"]:
+                data += (f'''
+                            <scale-button variant="secondary" class="pdf-button-sbv" href="{node['service_type']}-{doc["type"]}.pdf" target="_blank">
+                            <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
+                            <span style="font-weight: normal;">Download PDF</span>
+                            </scale-button>
+                        ''')
+        except Exception:
+            print("Service " + node['service_type'] + " has not defined pdf_enabled!")
+
+        data += '</div>'
+
+>>>>>>> Stashed changes
         self.body.append(data)
     raise nodes.SkipNode
 
