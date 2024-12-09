@@ -102,6 +102,7 @@ def service_card_html(self, node):
     docs = sort_docs(service['documents'])
 
     for doc in docs:
+        
         environment = doc.get('environment')
         if environment == "hidden":
             continue
@@ -113,7 +114,7 @@ def service_card_html(self, node):
         else:
             link = doc['link']
 
-        data = '<div class="card item-sbv">'
+        data = '<div style="display: flex; flex-direction: column" class="card item-sbv">'
         data += (f'<a href="{link}">')
         data += (
             '<div class="card-body">'
@@ -126,8 +127,22 @@ def service_card_html(self, node):
         data += (
             f'<p>{node[doc["type"]]}</p>'
         )
-        data += '</div></a></div>'
+        data += '</div></a>'
+        try:
+            if doc["pdf_name"]:
+                data += (f'''
+                         <scale-button variant="secondary" style="align-self: end;margin-right: 1rem;margin-bottom: 1rem;">
+                            <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file> Download PDF
+                         </scale-button>
+                        ''')
+
+        except Exception as e:
+            print("Service " + node['service_type'] + " exception: " + str(e))
+        
+        data += '</div>'
+
         self.body.append(data)
+        
     raise nodes.SkipNode
 
 
