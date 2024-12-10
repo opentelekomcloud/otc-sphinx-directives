@@ -7,6 +7,8 @@ Documentation Examples
    directives_obs_clean
    directives_ecs
    directives_ecs_internal
+   directives_as
+   directives_as_internal
    directives_bd
    directives_geminidb_internal
    directives_docsportal
