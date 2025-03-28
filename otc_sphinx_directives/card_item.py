@@ -94,8 +94,14 @@ def card_item_html(self, node):
                 </div>
     '''
     for link in node['links']:
+        # data += f'''
+        #         <a href="{link['href']}" class="link">{link['title']}</a>
+        # '''
         data += f'''
-                <a href="{link['href']}" class="link">{link['title']}</a>
+                <div class="div-third-party-list" href="{link['href']}" to="_blank" target="_blank">
+                    <img class="img-third-party-list" alt="{node['title']}" src="/_static/images/light/{node['image']}"></img>
+                    <span class="text-third-party-list">{link['title']}</span>
+                </div>
         '''
 
     data += '''
