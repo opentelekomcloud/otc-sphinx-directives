@@ -31,7 +31,8 @@ class ServiceNavigator(Directive):
     node_class = service_navigator
     option_spec = {
         'class': directives.unchanged,
-        'environment': directives.unchanged_required
+        'environment': directives.unchanged_required,
+        'cloud_environment': directives.unchanged_required
     }
 
     has_content = False
@@ -39,6 +40,7 @@ class ServiceNavigator(Directive):
     def run(self):
         node = self.node_class()
         node['environment'] = self.options.get('environment', 'public')
+        node['cloud_environment'] = self.options.get('cloud_environment', 'eu_de')
         node['class'] = self.options.get('class', 'navigator-container')
         return [node]
 
@@ -55,9 +57,9 @@ def service_navigator_html(self, node):
 
         # Skip category if there are no services with the specified environment
         if node['environment'] == "internal":
-            if len(METADATA.services_by_category(category=category, environment=node['environment'])) + len(METADATA.services_by_category(category=category, environment="public")) == 0:
+            if len(METADATA.services_by_category(category=category, environment=node['environment'], cloud_environment=node['cloud_environment'])) + len(METADATA.services_by_category(category=category, environment="public", cloud_environment=node["cloud_environment"])) == 0:
                 continue
-        elif len(METADATA.services_by_category(category=category, environment=node['environment'])) == 0:
+        elif len(METADATA.services_by_category(category=category, environment=node['environment'], cloud_environment=node['cloud_environment'])) == 0:
             continue
 
         data += (
@@ -68,6 +70,7 @@ def service_navigator_html(self, node):
         )
 
         for service in METADATA.services_by_category(category=category):
+            
             title = service['service_title']
             link = service['service_uri']
             if link:
