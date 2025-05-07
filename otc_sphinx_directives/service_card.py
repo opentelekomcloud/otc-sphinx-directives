@@ -106,7 +106,6 @@ def service_card_html(self, node):
 
     for doc in docs:
         cloud_environment_check = True
-        print(doc)
         for cloud in doc["cloud_environments"]:
             if cloud["name"] == node["cloud_environment"]:
                 if cloud["visibility"] == "hidden":
