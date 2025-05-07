@@ -75,6 +75,7 @@ class ServiceCard(Directive):
         'best-practice': directives.unchanged,
         'sqlreference': directives.unchanged,
         'environment': directives.unchanged,
+        'cloud_environment': directives.unchanged,
         'guidelines': directives.unchanged
     }
 
@@ -87,6 +88,8 @@ class ServiceCard(Directive):
                 node[k] = self.options.get(k)
             elif k == 'environment':
                 node[k] = 'public'
+            elif k == "cloud_environment":
+                node[k] = "eu_de"
             else:
                 node[k] = ''
 
@@ -102,12 +105,17 @@ def service_card_html(self, node):
     docs = sort_docs(service['documents'])
 
     for doc in docs:
+        cloud_environment_check = True
+        print(doc)
+        for cloud in doc["cloud_environments"]:
+            if cloud["name"] == node["cloud_environment"]:
+                if cloud["visibility"] == "hidden":
+                    cloud_environment_check = False
+                if cloud["visibility"] == "internal" and node["environment"] != "internal":
+                    cloud_environment_check = False
+        if cloud_environment_check is False:
+            continue
 
-        environment = doc.get('environment')
-        if environment == "hidden":
-            continue
-        if environment == "internal" and node['environment'] != "internal":
-            continue
         link = ""
         if service["service"]["service_uri"] in doc["link"]:
             link = doc['link'].split("/")[2] + '/'
@@ -129,19 +137,20 @@ def service_card_html(self, node):
         )
         data += '</div></a>'
         try:
-            pdf_environment = doc.get('pdf_environment')
-            if doc["pdf_enabled"]:
-                if pdf_environment == "hidden":
-                    print("PDF not enabled anywhere!")
-                elif ((pdf_environment == "internal" and node['environment'] == "internal") or (pdf_environment == "public")):
-                    data += (f'''
-                                <scale-button variant="secondary" class="pdf-button-sbv" href="{node['service_type']}-{doc["type"]}.pdf" target="_blank">
-                                <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
-                                <span style="font-weight: normal;">Download PDF</span>
-                                </scale-button>
-                            ''')
+            for cloud in doc["cloud_environments"]:
+                if cloud["name"] == node["cloud_environment"]:
+                    if cloud["pdf_enabled"]:
+                        if cloud["pdf_visibility"] == "hidden":
+                            print("PDF not enabled anywhere!")
+                        elif (cloud["pdf_visibility"] == "internal" and node['environment'] == "internal") or (cloud["pdf_visibility"] == "public"):
+                            data += (f'''
+                                        <scale-button variant="secondary" class="pdf-button-sbv" href="{node['service_type']}-{doc["type"]}.pdf" target="_blank">
+                                        <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
+                                        <span style="font-weight: normal;">Download PDF</span>
+                                        </scale-button>
+                                    ''')
         except Exception:
-            print("Service " + node['service_type'] + " has not defined pdf_enabled or pdf_environment!")
+            print("Service " + node['service_type'] + " has not defined pdf_visibility or pdf_enabled!")
 
         data += '</div>'
 
