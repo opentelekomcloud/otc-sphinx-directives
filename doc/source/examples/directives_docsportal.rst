@@ -4,6 +4,7 @@ Docsportal
 .. navigator::
    :class: navigator-container
    :environment: internal
+   :cloud_environment: eu_de
    :document_type: umn
 
 .. service_group::
