@@ -75,7 +75,8 @@ class ServiceCard(Directive):
         'best-practice': directives.unchanged,
         'sqlreference': directives.unchanged,
         'environment': directives.unchanged,
-        'guidelines': directives.unchanged
+        'guidelines': directives.unchanged,
+        'obs_3rd_party': directives.unchanched
     }
 
     has_content = True
