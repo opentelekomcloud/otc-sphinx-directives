@@ -76,7 +76,7 @@ class ServiceCard(Directive):
         'sqlreference': directives.unchanged,
         'environment': directives.unchanged,
         'guidelines': directives.unchanged,
-        '3rd_party_sdk': directives.unchanched
+        '3rd_party_sdk': directives.unchanged
     }
 
     has_content = True
