@@ -55,11 +55,15 @@ def service_navigator_html(self, node):
         category = cat["name"]
         category_title = cat["title"]
 
+        service_list = []
+        # Get all public services as we always need them
+        service_list = service_list + METADATA.services_by_category(category=category, environment="public", cloud_environment=node["cloud_environment"])
         # Skip category if there are no services with the specified environment
         if node['environment'] == "internal":
-            if len(METADATA.services_by_category(category=category, environment=node['environment'], cloud_environment=node['cloud_environment'])) + len(METADATA.services_by_category(category=category, environment="public", cloud_environment=node["cloud_environment"])) == 0:
+            service_list = service_list + METADATA.services_by_category(category=category, environment=node['environment'], cloud_environment=node['cloud_environment'])
+            if len(service_list) == 0:
                 continue
-        elif len(METADATA.services_by_category(category=category, environment=node['environment'], cloud_environment=node['cloud_environment'])) == 0:
+        elif len(service_list) == 0:
             continue
 
         data += (
@@ -69,8 +73,7 @@ def service_navigator_html(self, node):
             f'<div class="card-services">'
         )
 
-        for service in METADATA.services_by_category(category=category):
-            
+        for service in service_list:
             title = service['service_title']
             link = service['service_uri']
             if link:
@@ -79,11 +82,6 @@ def service_navigator_html(self, node):
                 else:
                     link = link + 'index.html'
             img = service['service_type']
-            environment = service['environment']
-            if environment == "hidden":
-                continue
-            if environment == "internal" and node['environment'] != "internal":
-                continue
             data += (
                 f'<div><a href="{link}" class="service-entries">'
                 f'  <div class="">'
