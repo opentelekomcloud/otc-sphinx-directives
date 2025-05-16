@@ -14,7 +14,6 @@ from docutils import nodes
 
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
-import logging as log
 from sphinx.util import logging
 
 import otc_metadata.services
@@ -54,21 +53,21 @@ def service_group_html(self, node):
     # links as individual list items
     data = '<div class="container-docsportal">'
     services_with_docs_by_category = METADATA.services_with_docs_by_category(
-            node['service_category'],
-            environment='public',
-            cloud_environment=node['cloud_environment']).items()
+        node['service_category'],
+        environment='public',
+        cloud_environment=node['cloud_environment']).items()
 
     if node['environment'] == 'internal':
         internal_services_with_docs_by_category = METADATA.services_with_docs_by_category(
-                node['service_category'],
-                environment='internal',
-                cloud_environment=node['cloud_environment']).items()
+            node['service_category'],
+            environment='internal',
+            cloud_environment=node['cloud_environment']).items()
         for pk, service in services_with_docs_by_category:
             for ik, internal_service in internal_services_with_docs_by_category:
                 if pk == ik:
                     if "docs" in service and "docs" in internal_service:
                         service["docs"] += internal_service["docs"]
-    
+
     for k, v in services_with_docs_by_category:
         if not v.get("docs"):
             continue
