@@ -32,7 +32,8 @@ class Navigator(Directive):
     option_spec = {
         'class': directives.unchanged,
         'document_type': directives.unchanged,
-        'environment': directives.unchanged_required
+        'environment': directives.unchanged_required,
+        'cloud_environment': directives.unchanged_required
     }
 
     has_content = False
@@ -41,6 +42,7 @@ class Navigator(Directive):
         node = self.node_class()
         node['document_type'] = self.options['document_type']
         node['environment'] = self.options.get('environment', 'public')
+        node['cloud_environment'] = self.options.get('cloud_environment', 'eu_de')
         node['class'] = self.options.get('class', 'navigator-container')
         return [node]
 
@@ -61,14 +63,15 @@ def navigator_html(self, node):
             f'<div class="card-services">'
         )
         for k, v in METADATA.services_with_docs_by_category(
-                category=category, environment=node['environment']).items():
+                category=category,
+                environment=node['environment'],
+                cloud_environment=node['cloud_environment']).items():
             title = v["service_title"]
             for doc in v.get("docs", []):
                 if "link" not in doc:
                     continue
                 if "type" not in doc or doc["type"] != node["document_type"]:
                     continue
-                title = doc["service_title"]
                 link = doc.get("link")
                 img = v["service_type"]
                 data += (
