@@ -11,3 +11,10 @@ Docsportal
    :class: service-group
    :service_category: container
    :environment: internal
+   :cloud_environment: eu_de
+
+.. service_group::
+   :class: service-group
+   :service_category: container
+   :environment: public
+   :cloud_environment: eu_de

@@ -14,6 +14,7 @@ from docutils import nodes
 
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
+import logging as log
 from sphinx.util import logging
 
 import otc_metadata.services
@@ -33,7 +34,8 @@ class ServiceGroup(Directive):
     option_spec = {
         'class': directives.unchanged,
         'service_category': directives.unchanged_required,
-        'environment': directives.unchanged_required
+        'environment': directives.unchanged_required,
+        'cloud_environment': directives.unchanged_required,
     }
 
     has_content = False
@@ -43,6 +45,7 @@ class ServiceGroup(Directive):
         node['service_category'] = self.options.get('service_category')
         node['environment'] = self.options.get('environment', 'public')
         node['class'] = self.options.get('class', 'navigator-container')
+        node['cloud_environment'] = self.options.get('cloud_environment', 'eu_de')
         return [node]
 
 
@@ -50,8 +53,23 @@ def service_group_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
     data = '<div class="container-docsportal">'
-    for k, v in METADATA.services_with_docs_by_category(
-            node['service_category'], environment=node['environment']).items():
+    services_with_docs_by_category = METADATA.services_with_docs_by_category(
+            node['service_category'],
+            environment='public',
+            cloud_environment=node['cloud_environment']).items()
+
+    if node['environment'] == 'internal':
+        internal_services_with_docs_by_category = METADATA.services_with_docs_by_category(
+                node['service_category'],
+                environment='internal',
+                cloud_environment=node['cloud_environment']).items()
+        for pk, service in services_with_docs_by_category:
+            for ik, internal_service in internal_services_with_docs_by_category:
+                if pk == ik:
+                    if "docs" in service and "docs" in internal_service:
+                        service["docs"] += internal_service["docs"]
+    
+    for k, v in services_with_docs_by_category:
         if not v.get("docs"):
             continue
         title = v["service_title"]
