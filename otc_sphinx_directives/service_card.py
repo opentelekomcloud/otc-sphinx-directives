@@ -110,10 +110,21 @@ def service_card_html(self, node):
         cloud_environment_check = True
         for cloud in doc["cloud_environments"]:
             if cloud["name"] == node["cloud_environment"]:
+                # Check must be true by default if cloud_environments match
+                cloud_environment_check = True
+
+                # Turn Check to False if visibilities don't match
                 if cloud["visibility"] == "hidden":
                     cloud_environment_check = False
                 if cloud["visibility"] == "internal" and node["environment"] != "internal":
                     cloud_environment_check = False
+
+                # Break the loop as we found a match on cloud_environment
+                break
+
+            # In case Metadata doesn't have a cloud environment for the specified one:
+            else:
+                cloud_environment_check = False
         if cloud_environment_check is False:
             continue
 
