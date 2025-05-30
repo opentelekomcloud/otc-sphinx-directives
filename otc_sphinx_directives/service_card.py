@@ -51,35 +51,22 @@ METADATA = otc_metadata.services.Services()
 
 class ServiceCard(Directive):
     node_class = service_card
-    option_spec = {
-        'service_type': directives.unchanged_required,
-        'id': directives.unchanged,
-        'api-ref': directives.unchanged,
-        'blueprints': directives.unchanged,
-        'caf': directives.unchanged,
-        'dev': directives.unchanged,
-        'image-creation-guide': directives.unchanged,
-        'tool-guide': directives.unchanged,
-        'mycredential': directives.unchanged,
-        'public-images': directives.unchanged,
-        'sdk-ref': directives.unchanged,
-        'operation-guide': directives.unchanged,
-        'operation-guide-lts': directives.unchanged,
-        'parallel-file-system': directives.unchanged,
-        'permissions-configuration-guide': directives.unchanged,
-        'permissions': directives.unchanged,
-        'swiftapi': directives.unchanged,
-        's3api': directives.unchanged,
-        'umn': directives.unchanged,
-        'umn2': directives.unchanged,
-        'best-practice': directives.unchanged,
-        'sqlreference': directives.unchanged,
-        'environment': directives.unchanged,
-        'cloud_environment': directives.unchanged,
-        'guidelines': directives.unchanged,
-        '3rd_party_sdk': directives.unchanged,
-        'python-sdk': directives.unchanged
-    }
+
+    required_options = {"service_type"}
+
+    # default options always included
+    doc_types = ['id','environment','cloud_environment','service_type']
+
+    for doc in otc_metadata.services.Services().all_docs:
+        if doc["type"] not in doc_types:
+            doc_types.append(doc["type"])
+
+    option_spec = {}
+    for key in doc_types:
+        if key in required_options:
+            option_spec[key] = directives.unchanged_required
+        else:
+            option_spec[key] = directives.unchanged
 
     has_content = True
 
