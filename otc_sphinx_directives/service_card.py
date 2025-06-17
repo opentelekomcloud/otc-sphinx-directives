@@ -55,7 +55,7 @@ class ServiceCard(Directive):
     required_options = {"service_type"}
 
     # default options always included
-    doc_types = ['id','environment','cloud_environment','service_type']
+    doc_types = ['id', 'environment', 'cloud_environment', 'service_type']
 
     for doc in otc_metadata.services.Services().all_docs:
         if doc["type"] not in doc_types:
