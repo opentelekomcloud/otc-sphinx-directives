@@ -15,3 +15,5 @@ html_static_path = ['_static']
 
 otcdocs_doc_environment = 'internal'
 otcdocs_search_environment = 'hc_de'
+otcdocs_service_environment = 'internal'
+otcdocs_cloud_environment = 'eu_de'
