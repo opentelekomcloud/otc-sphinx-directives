@@ -1,5 +1,5 @@
-Object Storage Clean
-====================
+Object Storage without Descriptions
+===================================
 
 Object Storage Service (OBS) is an object-based storage service that provides customers with massive, secure, reliable, and cost-effective data storage capabilities, such as bucket creation, modification, and deletion, as well as object upload, download, and deletion.
 
