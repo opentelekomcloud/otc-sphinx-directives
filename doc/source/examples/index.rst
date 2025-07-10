@@ -16,3 +16,4 @@ Documentation Examples
    card_item
    service_navigator
    docs_link
+   service_card_link
