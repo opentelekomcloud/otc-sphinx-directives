@@ -33,7 +33,6 @@ class ServiceCardLink(Directive):
         'description': directives.unchanged,
     }
 
-
     has_content = False
 
     def run(self):
@@ -61,7 +60,7 @@ def service_card_link_html(self, node):
             {node['description']}
         '''
 
-    data += f'''
+    data += '''
                 </p>
             </div>
         </a>
