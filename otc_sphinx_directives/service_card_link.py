@@ -49,7 +49,7 @@ def service_card_link_html(self, node):
 
     data = f'''
     <div class="card item-sbv item-sbv-flex">
-        <a href="{node['url']}">
+        <a href="{node['url']}" target="_blank">
             <div class="card-body">
                 <h4>{node['title']}</h4>
                 <p>
