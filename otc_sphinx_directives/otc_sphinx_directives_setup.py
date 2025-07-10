@@ -12,6 +12,7 @@
 
 from otc_sphinx_directives.directive_wrapper import directive_wrapper, directive_wrapper_latex, DirectiveWrapper
 from otc_sphinx_directives.service_card import service_card, service_card_html, service_card_latex, ServiceCard
+from otc_sphinx_directives.service_card_link import service_card_link, service_card_link_html, service_card_link_latex, ServiceCardLink
 from otc_sphinx_directives.container_item import container_item, container_item_html, ContainerItem
 from otc_sphinx_directives.service_navigator import service_navigator, service_navigator_html, ServiceNavigator
 from otc_sphinx_directives.service_group import service_group, service_group_html, ServiceGroup
@@ -46,6 +47,11 @@ def setup(app):
                  html=(service_group_html, None))
     app.add_node(docs_link,
                  html=(docs_link_html, None))
+    app.add_node(
+        service_card_link,
+        html=(service_card_link_html, None),
+        latex=(service_card_link_latex, None))
+    app.add_directive("service_card_link", ServiceCardLink)
     app.add_directive("container_item", ContainerItem)
     app.add_directive("card_item", CardItem)
     app.add_directive("navigator", Navigator)
