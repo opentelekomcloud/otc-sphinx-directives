@@ -51,7 +51,7 @@ def service_card_link_html(self, node):
     <div class="card item-sbv item-sbv-flex">
         <a href="{node['url']}" target="_blank">
             <div class="card-body">
-                <h4>{node['title']}</h4>
+                <h4 style="display: inline-flex; width: 100%; justify-content: space-between;">{node['title']} <scale-icon-navigation-external-link accessibility-title="external-link"/></h4>
                 <p>
     '''
 
