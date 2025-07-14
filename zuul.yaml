@@ -8,7 +8,9 @@
       jobs:
         - otc-tox-pep8
         - otc-tox-py39
+        - otc-tox-docs
     gate:
       jobs:
         - otc-tox-pep8
         - otc-tox-py39
+        - otc-tox-docs
