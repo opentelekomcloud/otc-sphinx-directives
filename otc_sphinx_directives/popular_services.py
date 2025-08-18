@@ -15,13 +15,13 @@ from docutils import nodes
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 from sphinx.util import logging
-import json
 
 from otc_metadata.analytics.data import AnalyticsData
 import otc_metadata.services
 
 LOG = logging.getLogger(__name__)
 METADATA = otc_metadata.services.Services()
+
 
 class popular_services(nodes.General, nodes.Element):
     pass
@@ -43,7 +43,6 @@ class PopularServices(Directive):
         return [node]
 
 
-
 def popular_services_html(self, node):
     # This method renders containers per each service of the category with all
     # links as individual list items
@@ -56,29 +55,30 @@ def popular_services_html(self, node):
     for svc in analytics_data:
         if svc in cloud_env_services:
             popular_services.append(cloud_env_services[svc])
-    
+
     for svc in popular_services:
         data += f'''
-            <div class="card item-sbv item-sbv-flex">
+            <div class="card item-pop-svc item-pop-svc-flex">
                 <a href="/{svc['service_uri']}/">
                     <div class="card-body">
-                        <h4>{svc['service_title']}</h4>
+                        <div class="header">
+                            <picture>
+                                <source class="icon-svg" srcset="_static/images/services/dark/{svc['service_type']}.svg" media="(prefers-color-scheme: dark)">
+                                <img class="icon-svg" src="_static/images/services/light/{svc['service_type']}.svg">
+                            </picture>
+                            <h4>{svc['service_title']}</h4>
+                        </div>
         '''
         if 'description' in svc:
             data += f'''
-                <p>{svc['description']}</p>
+                        <p>{svc['description']}</p>
             '''
 
-        data += f'''
+        data += '''
                     </div>
                 </a>
             </div>
         '''
-
-    # popular_services = json.dumps(METADATA.all_services_by_cloud_environment_as_dict(cloud_environment=node['cloud_environment'], environments=['public']))
-    # data += f'''
-    #     <div class="popular-services">Cloud Environment: {popular_services}</div>
-    # '''
 
     self.body.append(data)
     raise nodes.SkipNode

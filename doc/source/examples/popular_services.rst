@@ -2,7 +2,7 @@ Popular Services
 ================
 
 .. directive_wrapper::
-   :class: container-docsportal
+   :class: container-pop-svc
 
    .. popular_services::
       :cloud_environment: swiss
