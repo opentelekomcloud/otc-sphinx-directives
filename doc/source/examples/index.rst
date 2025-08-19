@@ -17,3 +17,4 @@ Documentation Examples
    service_navigator
    docs_link
    service_card_link
+   popular_services
