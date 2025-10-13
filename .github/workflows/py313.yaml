@@ -1,0 +1,11 @@
+name: Run Linting
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+jobs:
+  run-py313:
+    runs-on: ubuntu
+    steps:
+      - uses: opentelekomcloud-infra/github-actions/.github/actions/tox-run-env@v1
+        with:
+          tox-env: py313
