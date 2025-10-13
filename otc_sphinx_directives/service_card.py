@@ -142,10 +142,11 @@ def service_card_html(self, node):
                         if cloud["pdf_visibility"] == "hidden":
                             print("PDF not enabled anywhere!")
                         elif (cloud["pdf_visibility"] == "internal" and node['environment'] == "internal") or (cloud["pdf_visibility"] == "public"):
+                            doctype = doc["type"]
                             if doc["type"] == "dev":
-                                doc["type"] = "dev-guide"
+                                doctype = "dev-guide"
                             data += (f'''
-                                        <scale-button variant="secondary" class="pdf-button-sbv" href="{node['service_type']}-{doc["type"]}.pdf" data-umami-event="PDF Download" data-umami-event-pdfname="{node['service_type']}-{doc["type"]}.pdf" target="_blank">
+                                        <scale-button variant="secondary" class="pdf-button-sbv" href="{node['service_type']}-{doc["type"]}.pdf" data-umami-event="PDF Download" data-umami-event-pdfname="{node['service_type']}-{doctype}.pdf" target="_blank">
                                         <scale-icon-user-file-pdf-file accessibility-title="pdf-file"></scale-icon-user-file-pdf-file>
                                         <span style="font-weight: normal;">Download PDF</span>
                                         </scale-button>
