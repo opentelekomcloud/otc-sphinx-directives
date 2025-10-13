@@ -6,9 +6,7 @@
       - publish-to-pypi
     check:
       jobs:
-        - otc-tox-pep8
-        - otc-tox-py39
-        - otc-tox-docs
+        - noop
     gate:
       jobs:
         - otc-tox-pep8
