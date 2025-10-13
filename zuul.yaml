@@ -4,6 +4,9 @@
     default-branch: main
     templates:
       - publish-to-pypi
+    check:
+      jobs:
+        - noop
     gate:
       jobs:
         - otc-tox-pep8
