@@ -1,4 +1,4 @@
-name: Run Linting
+name: Run Python checks
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]

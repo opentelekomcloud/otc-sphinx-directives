@@ -1,4 +1,4 @@
-name: Run Linting
+name: Build documentation
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
