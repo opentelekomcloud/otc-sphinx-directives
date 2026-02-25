@@ -12,4 +12,3 @@ Long Long Long Auto Scaling description which is very important.
       :service_type: as
       :umn: This document describes basic concepts, functions, key terms, and FAQs of ASs and provides instructions for applying for and using ASs.
       :api-ref: This document describes application programming interfaces (APIs) of AS (ECS) and provides API parameter description and example values.
-      :dev: This document describes how to call the APIs of AS (AS) to use AS functions.
