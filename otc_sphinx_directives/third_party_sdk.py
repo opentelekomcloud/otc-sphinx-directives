@@ -72,7 +72,7 @@ def third_party_sdk_html(self, node):
       </div>
     </div>
 
-    <div class="sdk-grid">
+    <div class="sdk-flexbox">
 '''
 
     for sdk in node['sdks']:
