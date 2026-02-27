@@ -26,6 +26,11 @@ from otc_sphinx_directives.popular_services import (
     popular_services_latex,
     PopularServices
 )
+from otc_sphinx_directives.third_party_sdk import (
+    third_party_sdk,
+    third_party_sdk_html,
+    ThirdPartySdk
+)
 
 
 def setup(app):
@@ -71,6 +76,11 @@ def setup(app):
     app.add_directive("service_group", ServiceGroup)
     app.add_directive("docs_link", DocsLink)
     app.add_directive("popular_services", PopularServices)
+    app.add_node(
+        third_party_sdk,
+        html=(third_party_sdk_html, None)
+    )
+    app.add_directive("third_party_sdk", ThirdPartySdk)
 
     return {
         'version': '0.1',
