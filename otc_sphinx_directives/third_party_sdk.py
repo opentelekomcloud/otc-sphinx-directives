@@ -55,10 +55,10 @@ class ThirdPartySdk(Directive):
 
 
 def third_party_sdk_html(self, node):
-    data = f'''<div class="service-card">
-    <div class="service-header">
-      <div class="service-title">
-        <div class="service-icon">{node['icon']}</div>
+    data = f'''<div class="sdk-service-card">
+    <div class="sdk-service-header">
+      <div class="sdk-service-title">
+        <div class="sdk-service-icon">{node['icon']}</div>
         <div>
           <h2>{node['title']}</h2>
           <p>{node['description']}</p>
