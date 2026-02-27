@@ -24,7 +24,7 @@ class ThirdPartySdk(Directive):
     option_spec = {
         'title': directives.unchanged_required,
         'description': directives.unchanged_required,
-        'icon': directives.unchanged,
+        'servicetype': directives.unchanged_required,
     }
 
     has_content = True
@@ -33,7 +33,7 @@ class ThirdPartySdk(Directive):
         node = third_party_sdk()
         node['title'] = self.options.get('title', '')
         node['description'] = self.options.get('description', '')
-        node['icon'] = self.options.get('icon', '📦')
+        node['servicetype'] = self.options.get('servicetype', '').lower().replace(' ', '_')
         
         sdk_list = []
         for line in self.content:
@@ -55,10 +55,16 @@ class ThirdPartySdk(Directive):
 
 
 def third_party_sdk_html(self, node):
+    icon = node['servicetype']
     data = f'''<div class="sdk-service-card">
     <div class="sdk-service-header">
       <div class="sdk-service-title">
-        <div class="sdk-service-icon">{node['icon']}</div>
+        <div class="sdk-service-icon">
+          <picture>
+            <source class="" srcSet="../../_static/images/services/dark/{icon}.svg" media="(prefers-color-scheme: dark)" />
+            <img class="" src="../../_static/images/services/light/{icon}.svg">
+          </picture>
+        </div>
         <div>
           <h2>{node['title']}</h2>
           <p>{node['description']}</p>
