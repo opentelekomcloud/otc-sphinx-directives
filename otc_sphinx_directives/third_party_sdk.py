@@ -62,7 +62,7 @@ def third_party_sdk_html(self, node):
         <div class="sdk-service-icon">
           <picture>
             <source class="" srcSet="../../_static/images/services/dark/{icon}.svg" media="(prefers-color-scheme: dark)" />
-            <img class="" src="../../_static/images/services/light/{icon}.svg">
+            <img class="" src="../../_static/images/services/dark/{icon}.svg">
           </picture>
         </div>
         <div>
