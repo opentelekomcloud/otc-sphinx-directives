@@ -92,7 +92,7 @@ def card_item_html(self, node):
                 <div style="padding-bottom: 1rem;">
                     {node['description']}
                 </div>
-                <div class="sdk-actions">        
+                <div class="sdk-actions">
     '''
     i = 0
     for link in node['links']:
