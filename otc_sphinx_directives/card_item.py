@@ -82,33 +82,31 @@ def card_item_html(self, node):
 
     data = f'''
     <div class="card-item">
-        <div>
-            <picture>
-                <source alt="{node['title']}" srcSet="/_static/images/dark/{node['image']}" media="(prefers-color-scheme: dark)" />
-                <img class="card-item-img" alt="{node['title']}" src="/_static/images/light/{node['image']}">
-            </picture>
-            <div class="card-item-content">
-                <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>
-                <div style="padding-bottom: 1rem;">
-                    {node['description']}
-                </div>
-                <div class="sdk-actions">
+        <picture>
+            <source alt="{node['title']}" srcSet="/_static/images/dark/{node['image']}" media="(prefers-color-scheme: dark)" />
+            <img class="card-item-img" alt="{node['title']}" src="/_static/images/light/{node['image']}">
+        </picture>
+        <div class="card-item-content">
+            <h4 style="margin: 0px 0 1rem 0; font: var(--telekom-text-style-heading-4);">{node['title']}</h4>
+            <div style="padding-bottom: 1rem;">
+                {node['description']}
+            </div>
+            <div class="sdk-actions">
     '''
     i = 0
     for link in node['links']:
         if i == 0:
             data += f'''
-                    <scale-button variant="secondary" href="{link['href']}">{link['title']}</scale-button>
+                <scale-button variant="secondary" href="{link['href']}">{link['title']}</scale-button>
             '''
             i = i + 1
         else:
             data += f'''
-                    <scale-button href="{link['href']}">{link['title']}</scale-button>
+                <scale-button href="{link['href']}">{link['title']}</scale-button>
             '''
             i = i + 1
 
     data += '''
-                </div>
             </div>
         </div>
     </div>
