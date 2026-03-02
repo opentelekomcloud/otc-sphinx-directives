@@ -92,13 +92,26 @@ def card_item_html(self, node):
                 <div style="padding-bottom: 1rem;">
                     {node['description']}
                 </div>
+                <div class="sdk-actions">
+          <scale-button variant="secondary" href="https://github.com/opentelekomcloud-community/obs-python-sdk" icon-position="before" class="hydrated">View Source</scale-button>
+          <scale-button href="https://docs.otc.t-systems.com/object-storage-service-3rd-party/python-sdk/" icon-position="before" class="hydrated">Documentation</scale-button>
+        
     '''
+    i = 0
     for link in node['links']:
-        data += f'''
-                <a href="{link['href']}" class="link">{link['title']}</a>
-        '''
+        if i == 0:
+            data += f'''
+                    <scale-button variant="secondary" href="{link['href']}">{link['title']}</scale-button>
+            '''
+            i = i + 1
+        else:
+            data += f'''
+                    <scale-button href="{link['href']}">{link['title']}</scale-button>
+            '''
+            i = i + 1            
 
     data += '''
+                </div>
             </div>
         </div>
     </div>
