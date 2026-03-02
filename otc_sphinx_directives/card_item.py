@@ -92,10 +92,7 @@ def card_item_html(self, node):
                 <div style="padding-bottom: 1rem;">
                     {node['description']}
                 </div>
-                <div class="sdk-actions">
-          <scale-button variant="secondary" href="https://github.com/opentelekomcloud-community/obs-python-sdk" icon-position="before" class="hydrated">View Source</scale-button>
-          <scale-button href="https://docs.otc.t-systems.com/object-storage-service-3rd-party/python-sdk/" icon-position="before" class="hydrated">Documentation</scale-button>
-        
+                <div class="sdk-actions">        
     '''
     i = 0
     for link in node['links']:
@@ -108,7 +105,7 @@ def card_item_html(self, node):
             data += f'''
                     <scale-button href="{link['href']}">{link['title']}</scale-button>
             '''
-            i = i + 1            
+            i = i + 1
 
     data += '''
                 </div>
