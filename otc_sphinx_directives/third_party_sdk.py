@@ -34,7 +34,7 @@ class ThirdPartySdk(Directive):
         node['title'] = self.options.get('title', '')
         node['description'] = self.options.get('description', '')
         node['servicetype'] = self.options.get('servicetype', '').lower().replace(' ', '_')
-        
+
         sdk_list = []
         for line in self.content:
             line = line.strip()
@@ -49,7 +49,7 @@ class ThirdPartySdk(Directive):
                     'source_url': parts[3].strip(),
                     'docs_url': parts[4].strip() if len(parts) > 4 else parts[3].strip()
                 })
-        
+
         node['sdks'] = sdk_list
         return [node]
 
@@ -92,6 +92,6 @@ def third_party_sdk_html(self, node):
     </div>
   </div>
 '''
-    
+
     self.body.append(data)
     raise nodes.SkipNode
