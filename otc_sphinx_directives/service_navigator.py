@@ -100,3 +100,4 @@ def service_navigator_html(self, node):
 
     self.body.append(data)
     raise nodes.SkipNode
+
